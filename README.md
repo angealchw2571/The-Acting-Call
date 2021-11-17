@@ -1,70 +1,69 @@
-# Getting Started with Create React App
+# Library Management System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of contents
 
-## Available Scripts
+- [Introduction](#introduction)
+- [Wireframe](#wireframe)
+- [Technologies](#technologies)
+- [Setup](#setup)
+- [Important Resources](#important-resources)
+- [Contributors](#contributors)
 
-In the project directory, you can run:
+## Introduction
 
-### `npm start`
+The goal of this project is to adapt and create a freelance gig listing website for actors/performers in Singapore. We hope this project will serve as a proof of concept and lay the foundations for future work.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# General User - Personal profile/Browsing/Listing casting calls
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Create your personalised profile page to showcase your talents
+- Browse through the directory for casting calls and actor/actress database
+- Create and post casting call listings
 
-### `npm test`
+## Wireframe
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The wireframe covers the following components:
 
-### `npm run build`
+### User_Wireframe
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![User_wireframe]
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Technologies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Project is created with:
 
-### `npm run eject`
+- PostgreSQL
+- Django
+- React.js
+- TailwindCSS
+- Node.js
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Library used in the project:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- [bcrypt](https://www.npmjs.com/package/bcrypt)
+- [TailwindCSS](https://tailwindcss.com/)
+- [axios](https://www.npmjs.com/package/axios)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Setup
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+To run this project, install it locally using npm:
 
-## Learn More
+```
+$ git clone
+$ cd client && npm install
+$ npm start
+$ npm install
+$ npm run dev
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Important Resources
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Testing
 
-### Code Splitting
+## Contributors
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+Current:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Calvin Sim
+- Angeal Cheong
