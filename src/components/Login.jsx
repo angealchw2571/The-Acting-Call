@@ -1,7 +1,43 @@
 import React from "react";
+import axios from "axios";
 import {RiGoogleFill} from 'react-icons/ri';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+
 
 export default function Login() {
+  let navigate = useNavigate();
+  const [networkStatus, setNetworkStatus] = useState("pending");
+  console.log(networkStatus)
+
+
+  const handleLogin = async (loginDetails) => {
+    await axios
+      .post(`/api/session/`, loginDetails)
+      .then((res) => {
+        setNetworkStatus("resolved");
+        navigate("/");
+      })
+      .catch(function (error) {
+        console.log(error);
+        setNetworkStatus("error");
+      });
+  };
+
+
+
+const handleSubmit = (event) => {
+  event.preventDefault()
+  const email = event.target.email.value
+  const password = event.target.password.value
+  console.log("email", email, "password", password)
+  handleLogin({ email: email, password: password });
+  navigate("/"); //! redirect to homepage
+
+}
+
+
   return (
     <>
       <main>
@@ -32,7 +68,7 @@ export default function Login() {
                     <div className="text-gray-100 text-center mb-3 font-bold">
                       <small>Or sign in with credentials</small>
                     </div>
-                    <form>
+                    <form onSubmit={handleSubmit}>
                       <div className="relative w-full mb-3">
                         <label
                           className="block uppercase text-white text-xs font-bold mb-2"
@@ -41,6 +77,7 @@ export default function Login() {
                           Email
                         </label>
                         <input
+                          name="email"
                           type="email"
                           className="border-0 px-3 py-3 placeholder-white text-gray-700 bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
                           placeholder="Email"
@@ -56,6 +93,7 @@ export default function Login() {
                           Password
                         </label>
                         <input
+                          name="password"
                           type="password"
                           className="border-0 px-3 py-3 placeholder-white text-gray-700 bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
                           placeholder="Password"
@@ -79,33 +117,24 @@ export default function Login() {
                       <div className="text-center mt-6">
                         <button
                           className="bg-gold-light text-gray-800 active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
-                          type="button"
+                          type="submit"
                           style={{ transition: "all .15s ease" }}
                         >
                           Sign In
                         </button>
                       </div>
-                    </form>
-                  </div>
-                </div>
-                <div className="flex flex-wrap mt-6">
-                  <div className="w-1/2">
+                <div className="mt-6">
+                  <div className="text-center">
                     <a
-                      href="#pablo"
-                      onClick={(e) => e.preventDefault()}
-                      className="text-gray-300"
-                    >
-                      <small>Forgot password?</small>
-                    </a>
-                  </div>
-                  <div className="w-1/2 text-right">
-                    <a
-                      href="#pablo"
+                      href="/user/new"
                       onClick={(e) => e.preventDefault()}
                       className="text-gray-300"
                     >
                       <small>Create new account</small>
                     </a>
+                  </div>
+                </div>
+                    </form>
                   </div>
                 </div>
               </div>
