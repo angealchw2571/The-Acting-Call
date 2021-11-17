@@ -13,7 +13,7 @@
 
 The goal of this project is to adapt and create a freelance gig listing website for actors/performers in Singapore. We hope this project will serve as a proof of concept and lay the foundations for future work.
 
-# General User - Personal profile/Browsing/Listing casting calls
+## General User - Personal profile/Browsing/Listing casting calls
 
 - Create your personalised profile page to showcase your talents
 - Browse through the directory for casting calls and actor/actress database
