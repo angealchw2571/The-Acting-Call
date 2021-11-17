@@ -32,7 +32,7 @@ const handleSubmit = (event) => {
   const email = event.target.email.value
   const password = event.target.password.value
   console.log("email", email, "password", password)
-  handleLogin({ email: email, password: password });
+  // handleLogin({ email: email, password: password });
   navigate("/"); //! redirect to homepage
 
 }

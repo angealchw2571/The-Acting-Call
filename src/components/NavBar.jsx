@@ -53,6 +53,15 @@ export default function Navbar({ fixed }) {
               <li className="nav-item">
                 <a
                   className="px-6 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                  href="/profile"
+                >
+                  <i className="fab fa-twitter text-lg leading-lg text-white opacity-75"></i>
+                  <span className="ml-2">profile</span>
+                </a>
+              </li>
+              <li className="nav-item">
+                <a
+                  className="px-6 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                   href="/login"
                 >
                   <i className="fab fa-pinterest text-lg leading-lg text-white opacity-75"></i>
