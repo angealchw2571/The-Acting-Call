@@ -1,6 +1,13 @@
 import React from "react";
+import axios from "axios";
 
 function CreateCastCall() {
+  const handleApi = async (newData) => {
+    await axios.post(`/api/casts/`, newData).then((res)=> {
+      console.log("res.data", res.data)
+    })
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = {
@@ -12,14 +19,14 @@ function CreateCastCall() {
       details: event.target.details.value,
       contact: event.target.contact.value,
       location: event.target.location.value,
-      posted_by: event.target.posted_by.value,
+      postedBy: event.target.posted_by.value,
       company: event.target.company.value,
       remnueration: event.target.remnueration.value,
-      loading_scale: event.target.loading_scale.value,
+      loadingScale: event.target.loading_scale.value,
       contract: event.target.contract.value === "true" ? true : false,
     };
     console.log("result", formData);
-    //! test
+    handleApi(formData)
   };
 
   return (
