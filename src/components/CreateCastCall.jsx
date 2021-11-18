@@ -19,6 +19,7 @@ function CreateCastCall() {
       contract: event.target.contract.value === "true" ? true : false,
     };
     console.log("result", formData);
+    //! test
   };
 
   return (
