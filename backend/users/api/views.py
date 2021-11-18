@@ -2,16 +2,23 @@ from rest_framework import serializers
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from users.api.serializers import RegistrationSerializer
-from rest_framework.authtoken.models import Token
-from users import models
+# from rest_framework.authtoken.models import Token
+# from users import models
 from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
 
         
 class LogoutViewAV(APIView):
     def post(self, request):
-        request.user.auth_token.delete()
-        return Response(status=status.HTTP_200_OK)
+        try:
+            current_token = request.data['token']
+            used_token = RefreshToken(current_token)
+            used_token.blacklist()
+            return Response(status=status.HTTP_200_OK)
+
+        except:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
 
 
 class RegistrationViewAV(APIView):

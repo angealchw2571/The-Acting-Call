@@ -1,6 +1,6 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/django,visualstudio
-# Edit at https://www.toptal.com/developers/gitignore?templates=django,visualstudio
+# Created by https://www.toptal.com/developers/gitignore/api/django,dotenv,visualstudio
+# Edit at https://www.toptal.com/developers/gitignore?templates=django,dotenv,visualstudio
 
 ### Django ###
 *.log
@@ -149,6 +149,8 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+### dotenv ###
 
 ### VisualStudio ###
 ## Ignore Visual Studio temporary files, build results, and
@@ -540,4 +542,4 @@ FodyWeavers.xsd
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 
-# End of https://www.toptal.com/developers/gitignore/api/django,visualstudio
+# End of https://www.toptal.com/developers/gitignore/api/django,dotenv,visualstudio

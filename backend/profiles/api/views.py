@@ -27,6 +27,8 @@ class ProfilesAV(APIView):
         else:
             return Response(serializer.errors)
 
+            
+
 class ProfilesDetailAV(APIView):
 
     def get(self, request, pk):
