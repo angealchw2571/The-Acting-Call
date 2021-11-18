@@ -1,6 +1,7 @@
 import React from "react";
 
 function CreateCastCall() {
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = {
@@ -16,7 +17,9 @@ function CreateCastCall() {
       company: event.target.company.value,
       remnueration: event.target.remnueration.value,
       loading_scale: event.target.loading_scale.value,
-      contract: event.target.contract.value,
+      contract: (event.target.contract.value) === "true" ? (true) : (false),
+      
+      
     };
     console.log("result", formData);
   };
@@ -29,25 +32,26 @@ function CreateCastCall() {
             <label className="block uppercase text-white text-xs font-bold mb-2">
               Casting Type
             </label>
-            <input
-              name="type"
-              className="border-0 px-3 py-3 placeholder-white text-gray-700 bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
-              placeholder="Commercial/Govt"
-            />
+            <select name= "type"  className="border-0 px-3 py-3 placeholder-white text-white bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full">
+            <option value="commercial">Commercial</option>
+            <option value="government">Government</option>
+            <option value="theatre">Theatre</option>
+            <option value="modelling">Modelling</option>
+          </select>
           </div>
           <div className="relative w-full mb-3">
             <label className="block uppercase text-white text-xs font-bold mb-2">
               Platform
             </label>
-            <input
-              name="platform"
-              className="border-0 px-3 py-3 placeholder-white text-gray-700 bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
-              placeholder="TV/Radio/Print"
-            />
+            <select name= "platform"  className="border-0 px-3 py-3 placeholder-white text-white bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full">
+            <option value="tv">TV</option>
+            <option value="radio">Radio</option>
+            <option value="print">Print/Magazine/Poster</option>
+          </select>
           </div>
           <div className="relative w-full mb-3">
             <label className="block uppercase text-white text-xs font-bold mb-2">
-              Period
+              Period in months
             </label>
             <input
               name="period"
@@ -71,21 +75,10 @@ function CreateCastCall() {
             <label className="block uppercase text-white text-xs font-bold mb-2">
               Gender
             </label>
-            <input
-              name="gender"
-              className="border-0 px-3 py-3 placeholder-white text-gray-700 bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
-              placeholder="gender"
-            />
-          </div>
-          <div className="relative w-full mb-3">
-            <label className="block uppercase text-white text-xs font-bold mb-2">
-              Details
-            </label>
-            <input
-              name="details"
-              className="border-0 px-3 py-3 placeholder-white text-gray-700 bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
-              placeholder="Details"
-            />
+            <select name= "gender"  className="border-0 px-3 py-3 placeholder-white text-white bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
           </div>
           <div className="relative w-full mb-3">
             <label className="block uppercase text-white text-xs font-bold mb-2">
@@ -129,7 +122,7 @@ function CreateCastCall() {
           </div>
           <div className="relative w-full mb-3">
             <label className="block uppercase text-white text-xs font-bold mb-2">
-              Remnueration
+              Remnueration (SGD)
             </label>
             <input
               name="remnueration"
@@ -141,20 +134,28 @@ function CreateCastCall() {
             <label className="block uppercase text-white text-xs font-bold mb-2">
               Loading scale
             </label>
-            <input
-              name="loading_scale"
-              className="border-0 px-3 py-3 placeholder-white text-gray-700 bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
-              placeholder="Loading Scale"
-            />
+            <select name= "loading_scale"  className="border-0 px-3 py-3 placeholder-white text-white bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full">
+            <option value="local">Local</option>
+            <option value="global">Global</option>
+          </select>
           </div>
           <div className="relative w-full mb-3">
             <label className="block uppercase text-white text-xs font-bold mb-2">
               Contract
             </label>
+            <select name= "contract"  className="border-0 px-3 py-3 placeholder-white text-white bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+          </div>
+          <div className="relative w-full mb-3">
+            <label className="block uppercase text-white text-xs font-bold mb-2">
+              Details
+            </label>
             <input
-              name="contract"
+              name="details"
               className="border-0 px-3 py-3 placeholder-white text-gray-700 bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
-              placeholder="Contract"
+              placeholder="Details"
             />
           </div>
           <div className="text-center mt-6">
