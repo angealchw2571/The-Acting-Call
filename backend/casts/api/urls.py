@@ -6,6 +6,8 @@ from django.urls import path, include
 from casts.api.views import CastCallAV, CastCallDetailAV
 #-------------------------------------------------------------
 
+# casts --> show all casting calls and add casting calls
+# cast/:pk --> show individual casting calls, edit and delete.
 
 urlpatterns = [
     path('', CastCallAV.as_view(), name='allcasts'),

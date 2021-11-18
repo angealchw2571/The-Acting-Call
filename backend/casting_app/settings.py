@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import environ
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -43,6 +46,8 @@ INSTALLED_APPS = [
     'casts',
     'profiles',
     'rest_framework.authtoken',
+    'django_seed',
+    'rest_framework_simplejwt.token_blacklist',
     'users'
 ]
 
@@ -80,10 +85,21 @@ WSGI_APPLICATION = 'casting_app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': env('NAME'),
+        'USER': env('USER'),
+        'PASSWORD': env('PASSWORD'),
+        'HOST': env('HOST'),
+        'PORT' : env('PORT'),
     }
 }
 
@@ -134,10 +150,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        
     ],
 }
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME' : timedelta(minutes=30),
-    'REFRESH_TOKEN_LIFETIME' : timedelta(days=1)
+    'REFRESH_TOKEN_LIFETIME' : timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS' : True,
+    'BLACKLIST_AFTER_ROTATION': True,
 }

@@ -7,11 +7,16 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
+# register ---> register acc
+# token --> issue token
+# token/refresh ---> request for new token.
+
 urlpatterns = [
-    path('login/', obtain_auth_token, name='login'),
-    path('register/', RegistrationViewAV, name='register'),
-    path('logout/', LogoutViewAV, name='logout'),
+    path('register/', RegistrationViewAV.as_view(), name='register'),
+    path('logout/', LogoutViewAV.as_view(), name='logout'),
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh')
     
 ]
+
+# path('login/', obtain_auth_token, name='login'),
