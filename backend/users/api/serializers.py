@@ -2,6 +2,25 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 import re
 
+class LoginSerializer(serializers.Serializer):
+
+    username = serializers.CharField(max_length=100)
+    password = serializers.CharField(max_length=100)
+    # email = serializers.EmailField()
+
+
+
+class TokenSerializer(serializers.Serializer):
+    token = serializers.CharField(max_length=255)
+
+
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password', 'id']
+
+
 class RegistrationSerializer(serializers.ModelSerializer):
 
     # use fields if we don't want to utilise all the attributes in the defined Model.
@@ -42,3 +61,5 @@ class RegistrationSerializer(serializers.ModelSerializer):
         account.save()
 
         return account
+
+
