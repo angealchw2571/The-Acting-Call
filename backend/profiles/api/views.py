@@ -32,6 +32,7 @@ class ProfilesAV(APIView):
 class ProfilesDetailAV(APIView):
 
     def get(self, request, pk):
+        print("Request ID: ", request.user)
         try:
             profiles = Profiles.objects.get(pk=pk)
         except Profiles.DoesNotExist:
