@@ -14,10 +14,10 @@ export default function Login() {
 
   const handleLogin = async (loginDetails) => {
     await axios
-      .post(`/api/session/`, loginDetails)
+      .post(`/api/account/login`, loginDetails)
       .then((res) => {
         setNetworkStatus("resolved");
-        navigate("/");
+        // navigate("/");
       })
       .catch(function (error) {
         console.log(error);
@@ -32,8 +32,8 @@ const handleSubmit = (event) => {
   const email = event.target.email.value
   const password = event.target.password.value
   console.log("email", email, "password", password)
-  // handleLogin({ email: email, password: password });
-  navigate("/"); //! redirect to homepage
+  handleLogin({ email: email, password: password, username: "chicken" });
+  // navigate("/"); //! redirect to homepage
 
 }
 
@@ -127,7 +127,6 @@ const handleSubmit = (event) => {
                   <div className="text-center">
                     <a
                       href="/user/new"
-                      onClick={(e) => e.preventDefault()}
                       className="text-gray-300"
                     >
                       <small>Create new account</small>

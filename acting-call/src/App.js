@@ -6,6 +6,8 @@ import Footer from './components/Footer';
 import Login from './components/Login';
 import Profile from './components/Profile';
 import CreateCastCall from './components/CreateCastCall';
+import ListGigs from './components/ListGigs';
+import CreateNewUser from './components/CreateNewUser';
 
 function App() {
   return (
@@ -18,10 +20,16 @@ function App() {
         <Route path="/login" element={<Login/>} />            
       </Routes>
       <Routes> 
+        <Route path="/user/new" element={<CreateNewUser/>} />            
+      </Routes>
+      <Routes> 
         <Route path="/profile" element={<Profile/>} />            
       </Routes>
       <Routes> 
-        <Route path="/gigs" element={<CreateCastCall/>} />            
+        <Route path="/gigs/new" element={<CreateCastCall/>} />            
+      </Routes>
+      <Routes> 
+        <Route path="/gigs" element={<ListGigs/>} />            
       </Routes>
       <Footer className=".flex-col"/>
     </BrowserRouter>
