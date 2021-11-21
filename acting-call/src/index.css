@@ -16,3 +16,12 @@ button.rec-dot {
 .rec.rec-arrow-right:hover:enabled:active {
   background-color: #ebd276;
 }
+
+.swiper-pagination-bullet-active {
+  background-color: #ebd276 !important;
+}
+
+.swiper-pagination {
+    transform: translate(0px, 15px) !important;
+
+}

@@ -1,0 +1,37 @@
+[
+    {
+      "name": "Angeal Cheong",
+      "id": 1,
+      "img": "https://tls.lasalle.edu.sg/sites/default/files/styles/portolio_profile_pic/public/2021-03/Angeal_opt_p.jpg?itok=nwk6FBJW"
+    },
+    {
+      "name": "Joel Tan",
+      "id": 2,
+      "img": "https://i.ibb.co/wssZ6md/Joel.jpg"
+    },
+    {
+      "name": "Manisha Joshi",
+      "id": 3,
+      "img": "https://tls.lasalle.edu.sg/sites/default/files/styles/portolio_profile_pic/public/2021-03/Manisha_opt_p.jpg?itok=ZDVX6KBj"
+    },
+    {
+      "name": "Khayn Kotak",
+      "id": 4,
+      "img": "https://s3-eu-west-1.amazonaws.com/images.castcall.blue-compass.com/portfolio/5980/5980355x300.webp"
+    },
+    {
+      "name": "Su Paing Tun (Su)",
+      "id": 5,
+      "img": "https://tls.lasalle.edu.sg/sites/default/files/styles/portolio_profile_pic/public/2021-03/Su_opt_p.jpg?itok=E9SCVWBY"
+    },
+    {
+        "name": "Indumathi Tamilselvan",
+        "id": 6,
+        "img": "https://tls.lasalle.edu.sg/sites/default/files/styles/portolio_profile_pic/public/2021-03/Indumathi_opt_p.jpg?itok=30XJoc7n"
+    },
+    {
+        "name": "Kenny Seethoo",
+        "id": 7,
+        "img": "https://tls.lasalle.edu.sg/sites/default/files/styles/portolio_profile_pic/public/2021-03/Kenny_opt_p.jpg?itok=19ciF26B"
+    }
+  ]
