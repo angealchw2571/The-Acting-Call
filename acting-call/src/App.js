@@ -8,6 +8,7 @@ import Profile from './components/Profile';
 import CreateCastCall from './components/CreateCastCall';
 import ListGigs from './components/ListGigs';
 import CreateNewUser from './components/CreateNewUser';
+import People from './components/People';
 
 function App() {
   return (
@@ -31,7 +32,10 @@ function App() {
       <Routes> 
         <Route path="/gigs" element={<ListGigs/>} />            
       </Routes>
-      <Footer className=".flex-col"/>
+      <Routes> 
+        <Route path="/people" element={<People/>} />            
+      </Routes>
+      <Footer className="flex-col"/>
     </BrowserRouter>
   )
 }
