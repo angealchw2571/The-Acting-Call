@@ -1,25 +1,34 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
+from profiles.api.serializers import ProfilesSerializer
 import re
+
+# Serializer for Login -------------------------------
 
 class LoginSerializer(serializers.Serializer):
 
     username = serializers.CharField(max_length=100)
     password = serializers.CharField(max_length=100)
-    # email = serializers.EmailField()
+    
 
-
+# Serializer for Issuing Tokens -------------------------------
 
 class TokenSerializer(serializers.Serializer):
     token = serializers.CharField(max_length=255)
 
+# Serializer for Login Data Response to FrontEnd -------------------------------
 
 class UserSerializer(serializers.ModelSerializer):
 
+    profiles = serializers.StringRelatedField(read_only=True)
+
     class Meta:
         model = User
-        fields = ['username', 'email', 'password', 'id']
+        # fields = "__all__"
+        fields = ['username', 'email', 'id', 'profiles']
 
+
+# Serializer for Registration of Account -------------------------------
 
 class RegistrationSerializer(serializers.ModelSerializer):
 
@@ -48,7 +57,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
         elif User.objects.filter(email=self.validated_data['email']).exists():
             raise serializers.ValidationError({'error': 'Email already exists!'})
         
-        elif len(self.validated_data['username']) or len(self.validated_data['password']) < 6:
+        elif len(self.validated_data['username']) < 6 or len(self.validated_data['password']) < 6:
             raise serializers.ValidationError({'error': 'Username and Password must be at least 6 characters long!'})
 
         elif (not (re.fullmatch(regex, self.validated_data['email']))):
