@@ -37,7 +37,7 @@ function App() {
         <Route path="/people" element={<People/>} />            
       </Routes>
       <Routes> 
-        <Route path="/gigs/:id" element={<IndividualGigs/>} />            
+        <Route path="/gigs/list/:id" element={<IndividualGigs/>} />            
       </Routes>
       <Footer className="flex-col"/>
     </BrowserRouter>

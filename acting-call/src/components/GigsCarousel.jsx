@@ -17,9 +17,9 @@ function GigsCarousel(props) {
     console.log("gigSelection", gigSelection)
 
   const handleClick = (e) => {
-    console.log("what i clicked", e);
+    // console.log("what i clicked", e);
     setGigSelection(e);
-    navigate(`/gigs/${e.id}`);
+    navigate(`/gigs/list/${e.id}`);
 
   };
 

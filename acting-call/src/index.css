@@ -30,3 +30,12 @@ a:hover, a:visited, a:link, a:active
 {
     text-decoration: none;
 }
+
+/* .fadeOut{
+     transition: width 0.5s 0.5s, height 0.5s 0.5s, opacity 0.5s;
+
+}
+.fadeIn{
+     transition: width 0.5s, height 0.5s, opacity 0.5s 0.5s;
+
+} */
