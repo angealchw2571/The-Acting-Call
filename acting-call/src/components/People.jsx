@@ -1,5 +1,4 @@
 import React from 'react'
-import ActorData from "../data/Actors.json"
 import ActorCarousel from "./ActorCarousel"
 import axios from "axios";
 import { useEffect, useState } from "react";

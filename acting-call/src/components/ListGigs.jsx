@@ -42,16 +42,8 @@ function ListGigs() {
         </div>
         <div className="thirdDiv text-white">
         <div className="text-white">
-            {/* <ul>
-            {networkStatus === "resolved" ? (gigsData.map((e,i)=> {
-                return (
-                <>
-                <li>{e.platform}</li>
-                </>
-                )
-            })): null}
-            </ul> */}
-            <GigsCarousel />
+            {networkStatus === "resolved" ? ( <GigsCarousel gigsData={gigsData} className="" />): null}
+            {/* <GigsCarousel className="" /> */}
         </div>
         </div>
       </div>

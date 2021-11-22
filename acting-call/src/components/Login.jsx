@@ -2,19 +2,19 @@ import React from "react";
 import axios from "axios";
 import {RiGoogleFill} from 'react-icons/ri';
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 
 
 export default function Login() {
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
   const [networkStatus, setNetworkStatus] = useState("pending");
   console.log(networkStatus)
 
 
   const handleLogin = async (loginDetails) => {
     await axios
-      .post(`/api/account/login`, loginDetails)
+      .post(`/api/account/login/`, loginDetails)
       .then((res) => {
         setNetworkStatus("resolved");
         // navigate("/");
@@ -29,10 +29,10 @@ export default function Login() {
 
 const handleSubmit = (event) => {
   event.preventDefault()
-  const email = event.target.email.value
+  const username = event.target.username.value
   const password = event.target.password.value
-  console.log("email", email, "password", password)
-  handleLogin({ email: email, password: password, username: "chicken" });
+  console.log("username", username, "password", password)
+  handleLogin({username: username, password: password  });
   // navigate("/"); //! redirect to homepage
 
 }
@@ -74,13 +74,12 @@ const handleSubmit = (event) => {
                           className="block uppercase text-white text-xs font-bold mb-2"
                           htmlFor="grid-password"
                         >
-                          Email
+                          Username
                         </label>
                         <input
-                          name="email"
-                          type="email"
+                          name="username"
                           className="border-0 px-3 py-3 placeholder-white text-gray-700 bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
-                          placeholder="Email"
+                          placeholder="Username"
                           style={{ transition: "all .15s ease" }}
                         />
                       </div>
