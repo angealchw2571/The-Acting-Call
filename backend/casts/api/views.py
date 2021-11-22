@@ -2,7 +2,7 @@
 # rest_frameworks
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import serializers, status
+from rest_framework import status
 #-----------------------------------------------------
 # local files import - Serializers
 from casts.api.serializers import CastCallSerializer
@@ -16,12 +16,15 @@ from casts.models import Castcall
 class CastCallAV(APIView):
 
     def get(self, request):
-        print("user.id HERE: ", request.user.id)
+        print("Request user: ", request.user)
+        print("Request ID: ", request.user.id)
         castcall = Castcall.objects.all()
         serializer = CastCallSerializer(castcall, many=True)
         return Response(serializer.data)
 
     def post(self,request):
+        print("Request user: ", request.user)
+        print("Request ID: ", request.user.id)
         serializer = CastCallSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -35,6 +38,8 @@ class CastCallAV(APIView):
 class CastCallDetailAV(APIView):
 
     def get(self, request, pk):
+        print("Request user: ", request.user)
+        print("Request ID: ", request.user.id)
         try:
             castcall = Castcall.objects.get(pk=pk)
         except Castcall.DoesNotExist:
@@ -43,6 +48,8 @@ class CastCallDetailAV(APIView):
         return Response(serializer.data)
 
     def put(self,request,pk):
+        print("Request user: ", request.user)
+        print("Request ID: ", request.user.id)
         castcall = Castcall.objects.get(pk=pk)
         serializer = CastCallSerializer(castcall, data=request.data)
         if serializer.is_valid():
@@ -52,6 +59,8 @@ class CastCallDetailAV(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     def delete(self,request,pk):
+        print("Request user: ", request.user)
+        print("Request ID: ", request.user.id)
         castcall = Castcall.objects.get(pk=pk)
         castcall.delete()
         # return in form of status code

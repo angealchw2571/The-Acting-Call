@@ -1,13 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 # Create your models here.
 
 class Profiles(models.Model):
     name = models.CharField(max_length=50)
-    height = models.IntegerField(default=0)
-    weight = models.IntegerField(default=0)
+    height = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(250)], default=0)
+    weight = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(1000)], default=0)
     displayPicture = models.CharField(max_length=300)
     language = models.CharField(max_length=300)
     contact = models.CharField(max_length=20)
@@ -16,11 +17,11 @@ class Profiles(models.Model):
     eyeColor = models.CharField(max_length=20)
     accents = models.CharField(max_length=100)
     skills = models.CharField(max_length=200)
-    playAgeMin = models.IntegerField(default=25)
-    playAgeMax = models.IntegerField(default=35)
+    playAgeMin = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(200)], default=25)
+    playAgeMax = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(200)], default=35)
     links = models.CharField(max_length=500)
     education = models.CharField(max_length=500)
-    accountLinked = models.ForeignKey(User, on_delete=models.CASCADE, related_name="profiles")
+    accountLinked = models.OneToOneField(User, on_delete=models.CASCADE, null=True,related_name="profiles")
 
     def __str__(self):
         return self.name
