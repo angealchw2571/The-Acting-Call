@@ -32,10 +32,10 @@ function CreateNewUser() {
     const password1 = event.target.password1.value;
     const password2 = event.target.password2.value;
     const username = event.target.username.value;
-    handleLogin({ email: email, password: password, username: username });
     checkPassword(password1, password2)
-      ? console.log(email, password1, password2, username)
-      : console.log("fail");
+    ?  handleLogin({ email: email, password: password1, username: username })
+    : console.log("fail");
+    // handleLogin({ email: email, password: password, username: username });
   };
 
   return (
@@ -148,7 +148,7 @@ function CreateNewUser() {
                         <div className="text-center text-gray-300">
                           <small>
                             Already have an account?
-                            <a href="/user/new" className="text-gray-300">
+                            <a href="/login" className="text-gray-300">
                               {" "}
                               Log in
                             </a>
