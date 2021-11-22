@@ -10,7 +10,6 @@ SwiperCore.use([Pagination, Navigation]);
 
 function GigsCarousel(props) {
   const actorData = props.props;
-  // console.log("actorData", actorData);
 
   return (
     <>

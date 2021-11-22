@@ -2,30 +2,32 @@ import React from "react";
 import axios from "axios";
 import {RiGoogleFill} from 'react-icons/ri';
 import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { atom, useAtom } from "jotai";
+import { useNavigate } from "react-router-dom";
 
 
+export const userSessionAtom = atom([]);
 
 export default function Login() {
-  // let navigate = useNavigate();
+  const [session, setSession] = useAtom(userSessionAtom);
   const [networkStatus, setNetworkStatus] = useState("pending");
-  console.log(networkStatus)
-
+  let navigate = useNavigate();
+  console.log("networkStatus", networkStatus)
+  console.log("session", session)
 
   const handleLogin = async (loginDetails) => {
     await axios
       .post(`/api/account/login/`, loginDetails)
       .then((res) => {
+        setSession(res.data);
         setNetworkStatus("resolved");
-        // navigate("/");
+        if (res.data) navigate("/")
       })
       .catch(function (error) {
         console.log(error);
         setNetworkStatus("error");
-      });
+      })
   };
-
-
 
 const handleSubmit = (event) => {
   event.preventDefault()

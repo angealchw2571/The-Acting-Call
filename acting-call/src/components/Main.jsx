@@ -1,12 +1,14 @@
 import React from "react";
 import Carousel from "react-elastic-carousel";
 import Item from "./Item";
-
+import { userSessionAtom } from "./Login";
+import { useAtom } from "jotai";
 
 
 function Main() {
   const items = ["1","2","3","4","5"]
-
+  const sessionData = useAtom(userSessionAtom)[0]
+  console.log("userSessionAtom from atom homepage", sessionData)
   return (
     <>
       <div>
@@ -20,7 +22,7 @@ function Main() {
             <div className="">
             <Carousel enableAutoPlay={true} autoPlaySpeed={5000}>
           {items.map((e) => (
-            <Item>{e}</Item>
+            <Item key={e}>{e}</Item>
           ))}
         </Carousel>
             </div>
