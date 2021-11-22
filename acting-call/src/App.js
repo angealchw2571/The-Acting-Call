@@ -9,6 +9,7 @@ import CreateCastCall from './components/CreateCastCall';
 import ListGigs from './components/ListGigs';
 import CreateNewUser from './components/CreateNewUser';
 import People from './components/People';
+import IndividualGigs from './components/IndividualGigs';
 
 function App() {
   return (
@@ -34,6 +35,9 @@ function App() {
       </Routes>
       <Routes> 
         <Route path="/people" element={<People/>} />            
+      </Routes>
+      <Routes> 
+        <Route path="/gigs/:id" element={<IndividualGigs/>} />            
       </Routes>
       <Footer className="flex-col"/>
     </BrowserRouter>

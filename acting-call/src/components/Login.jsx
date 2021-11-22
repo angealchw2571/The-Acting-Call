@@ -2,12 +2,12 @@ import React from "react";
 import axios from "axios";
 import {RiGoogleFill} from 'react-icons/ri';
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 
 
 export default function Login() {
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
   const [networkStatus, setNetworkStatus] = useState("pending");
   console.log(networkStatus)
 

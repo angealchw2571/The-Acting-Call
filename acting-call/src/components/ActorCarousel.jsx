@@ -27,7 +27,7 @@ function GigsCarousel(props) {
           return (
             <SwiperSlide key={i} className=" group text-center">
               <div className="imgDiv group-hover:opacity-20">
-                <img className="" src={e.displayPicture} style={{maxHeight:350, maxWidth:250}} />
+                <img className="" src={e.displayPicture} style={{maxHeight:350, maxWidth:250}} alt={e.name} />
               </div> 
               <div className="nameDiv text-xl opacity-0 absolute bottom-1/2 right-1/2 group-hover:opacity-100">
                <div className=""> 
