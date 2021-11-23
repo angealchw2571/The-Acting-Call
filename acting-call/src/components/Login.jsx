@@ -3,8 +3,9 @@ import axios from "axios";
 import { RiGoogleFill } from "react-icons/ri";
 import { useState } from "react";
 import { atom, useAtom } from "jotai";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+
 
 export const userSessionAtom = atom([]);
 
@@ -146,9 +147,9 @@ export default function Login() {
                       </div>
                       <div className="mt-6">
                         <div className="text-center">
-                          <a href="/user/new" className="text-gray-300">
+                          <Link to="/user/new" className="text-gray-300">
                             <small>Create new account</small>
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </form>

@@ -13,7 +13,7 @@ export default function Navbar({ fixed }) {
                   to="/"
                   className="px-6 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                 >
-              Acting Call <GiBackup />
+              Acting Call<GiBackup />
             </Link>
             <button
               className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"

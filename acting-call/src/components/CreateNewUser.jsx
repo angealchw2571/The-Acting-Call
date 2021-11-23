@@ -2,13 +2,34 @@ import React from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+
 
 function CreateNewUser() {
   let navigate = useNavigate();
 
 
+  const notifySuccess = () => toast.success("Success!", {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    });
+
   const notify = () => toast.error("Your password do not match!", {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    });
+
+  const notifyError = () => toast.error("Something went wrong. Please try again.", {
     position: "top-center",
     autoClose: 5000,
     hideProgressBar: false,
@@ -21,7 +42,13 @@ function CreateNewUser() {
   const handleRegister = async (loginDetails) => {
     await axios.post(`/api/account/register/`, loginDetails).then((res) => {
       console.log("res.data", res.data);
+      notifySuccess();
+      navigate("/login")
+    }).catch(function (error) {
+      console.log(error);
+      notifyError();
     });
+
   };
   const checkPassword = (password1, password2) => {
     if (password1 !== password2) {
@@ -39,7 +66,6 @@ function CreateNewUser() {
     checkPassword(password1, password2)
     ?  handleRegister({ email: email, password: password1, username: username })
     : console.log("fail");
-      navigate("/login")
   };
 
   return (
@@ -152,10 +178,10 @@ function CreateNewUser() {
                         <div className="text-center text-gray-300">
                           <small>
                             Already have an account?
-                            <a href="/login" className="text-gray-300">
+                            <Link to="/login" className="text-gray-300">
                               {" "}
                               Log in
-                            </a>
+                            </Link>
                           </small>
                         </div>
                       </div>
