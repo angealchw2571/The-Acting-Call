@@ -8,7 +8,7 @@ import { useAtom } from "jotai";
 function Main() {
   const items = ["1","2","3","4","5"]
   const sessionData = useAtom(userSessionAtom)[0]
-  console.log("userSessionAtom from atom homepage", sessionData)
+  console.log("userSessionAtom (homepage)", sessionData)
   return (
     <>
       <div>

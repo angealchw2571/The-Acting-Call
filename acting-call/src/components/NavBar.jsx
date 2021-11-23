@@ -60,13 +60,13 @@ export default function Navbar({ fixed }) {
                 </Link>
               </li>
               <li className="nav-item">
-                <a
+              <Link
+                  to="/login"
                   className="px-6 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                  href="/login"
                 >
                   <i className="fab fa-pinterest text-lg leading-lg text-white opacity-75"></i>
                   <span className="ml-2">login / signup</span>
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

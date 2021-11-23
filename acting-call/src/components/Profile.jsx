@@ -6,11 +6,11 @@ import axios from "axios";
 
 function Profile() {
   const sessionData = useAtom(userSessionAtom)[0];
-  console.log("sessionData from atom, profile", sessionData);
+  console.log("sessionData from atom", sessionData);
   const [profileData, setProfileData] = useState([]);
   const [networkStatus, setNetworkStatus] = useState("pending");
-  console.log(networkStatus);
-  console.log("local profileData", profileData)
+  // console.log(networkStatus);
+  console.log("api profileData", profileData)
 
   const data = {
     data: {
@@ -61,6 +61,7 @@ function Profile() {
 
   return (
     <>
+    <div className="text-center text-white">click me</div>
       <div className="grid grid-cols-6 gap-10 text-white justify-items-center font-montserrat">
         <div className="col-start-2 col-span-4 text-5xl mb-10">
           Angeal Cheong

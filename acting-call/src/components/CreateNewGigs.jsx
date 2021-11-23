@@ -1,12 +1,17 @@
 import React from "react";
 import axios from "axios";
+import { userSessionAtom } from "./Login";
+import { useAtom } from "jotai";
 
-function CreateCastCall() {
+function CreateNewGigs() {
   const handleApi = async (newData) => {
     await axios.post(`/api/casts/`, newData).then((res)=> {
       console.log("res.data", res.data)
     })
   };
+
+  const sessionData = useAtom(userSessionAtom)[0];
+  console.log("sessionData from atom", sessionData);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -25,7 +30,7 @@ function CreateCastCall() {
       loadingScale: event.target.loading_scale.value,
       contract: event.target.contract.value === "true" ? true : false,
     };
-    console.log("result", formData);
+    console.log("formData", formData);
     handleApi(formData)
   };
 
@@ -140,6 +145,7 @@ function CreateCastCall() {
                 name="posted_by"
                 className="border-0 px-3 py-3 placeholder-white text-white bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
                 placeholder="Posted By"
+                value={sessionData.profiles}
               />
             </div>
             <div className="relative w-full mb-3">
@@ -207,4 +213,4 @@ function CreateCastCall() {
   );
 }
 
-export default CreateCastCall;
+export default CreateNewGigs;

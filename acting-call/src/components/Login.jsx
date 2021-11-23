@@ -1,10 +1,9 @@
 import React from "react";
 import axios from "axios";
-import {RiGoogleFill} from 'react-icons/ri';
+import { RiGoogleFill } from "react-icons/ri";
 import { useState } from "react";
 import { atom, useAtom } from "jotai";
 import { useNavigate } from "react-router-dom";
-
 
 export const userSessionAtom = atom([]);
 
@@ -12,8 +11,7 @@ export default function Login() {
   const [session, setSession] = useAtom(userSessionAtom);
   const [networkStatus, setNetworkStatus] = useState("pending");
   let navigate = useNavigate();
-  console.log("networkStatus", networkStatus)
-  console.log("session", session)
+  console.log("sessionData (login)", session, networkStatus)
 
   const handleLogin = async (loginDetails) => {
     await axios
@@ -21,24 +19,22 @@ export default function Login() {
       .then((res) => {
         setSession(res.data);
         setNetworkStatus("resolved");
-        if (res.data) navigate("/")
+        if (res.data) navigate("/");
       })
       .catch(function (error) {
         console.log(error);
         setNetworkStatus("error");
-      })
+      });
   };
 
-const handleSubmit = (event) => {
-  event.preventDefault()
-  const username = event.target.username.value
-  const password = event.target.password.value
-  console.log("username", username, "password", password)
-  handleLogin({username: username, password: password  });
-  // navigate("/"); //! redirect to homepage
-
-}
-
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const username = event.target.username.value;
+    const password = event.target.password.value;
+    // console.log("username", username, "password", password)
+    handleLogin({ username: username, password: password });
+    // navigate("/"); //! redirect to homepage
+  };
 
   return (
     <>
@@ -59,9 +55,10 @@ const handleSubmit = (event) => {
                       <button
                         className="bg-gold-light active:bg-gray-100 text-gray-800 px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs"
                         type="button"
-                        style={{ transition: "all .15s ease" }} >
-                          <RiGoogleFill className="mr-2" />
-                           Google
+                        style={{ transition: "all .15s ease" }}
+                      >
+                        <RiGoogleFill className="mr-2" />
+                        Google
                       </button>
                     </div>
                     <hr className=" border-b-1 border-gray-400" />
@@ -124,16 +121,13 @@ const handleSubmit = (event) => {
                           Sign In
                         </button>
                       </div>
-                <div className="mt-6">
-                  <div className="text-center">
-                    <a
-                      href="/user/new"
-                      className="text-gray-300"
-                    >
-                      <small>Create new account</small>
-                    </a>
-                  </div>
-                </div>
+                      <div className="mt-6">
+                        <div className="text-center">
+                          <a href="/user/new" className="text-gray-300">
+                            <small>Create new account</small>
+                          </a>
+                        </div>
+                      </div>
                     </form>
                   </div>
                 </div>
