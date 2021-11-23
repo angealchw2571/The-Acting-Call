@@ -82,14 +82,16 @@ const checkUrl = () => {
 
   return (
     <>
-      <div className="text-right text-white">
+              {props.action === "view" ? (null) : (<div className="text-right text-white">
         <Link
           to={sessionData.profiles === null ? ("/profile/new") : (`/profile/${sessionData.id}/edit`)}
           className="bg-gold-light text-gray-800 active:bg-gray-700 text-sm px-3 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
         >
           <button className="uppercase font-bold">{sessionData.profiles === null? ("Create New Profile") : ("Edit Profile")}</button>
         </Link>
-      </div>
+      </div>)}
+
+      
 
 
 <div>
@@ -117,26 +119,29 @@ const checkUrl = () => {
               {data.data.weight !== "" ? (
                 <li>Weight: {profileData.weight} kg</li>
               ) : null}
-              <li>
-                Language:
-                {data.data.language.map((e, i) => {
-                  return (
-                    <span className="capitalize" key={i}>
-                      {" "}
-                      {e},{" "}
-                    </span>
-                  );
-                })}
-              </li>
+              <li>Language : {profileData.language} </li>
               <li>Contact: {profileData.contact}</li>
               <li>Playing Age: {profileData.playAgeMin} - {profileData.playAgeMax}</li>
               {profileData.hair_color !== "" ? (
                 <li>Hair Color: {profileData.hairColor}</li>
-              ) : null}
+                ) : null}
               {profileData.eyeColor !== "" ? (
                 <li>Eye Color: {profileData.eyeColor}</li>
-              ) : null}
-              {data.data.accents !== "" ? (
+                ) : null}
+                <li>Accents: {profileData.accents}</li>
+                <li>Skills: {profileData.skills}</li>
+                {/* <li>
+                  Language:
+                  {data.data.language.map((e, i) => {
+                    return (
+                      <span className="capitalize" key={i}>
+                        {" "}
+                        {e},{" "}
+                      </span>
+                    );
+                  })}
+                </li> */}
+              {/* {data.data.accents !== "" ? (
                 <li>
                   Accents:
                   {data.data.accents.map((e, i) => {
@@ -148,8 +153,9 @@ const checkUrl = () => {
                     );
                   })}
                 </li>
-              ) : null}
-              {data.data.skills !== "" ? (
+              ) : null} */}
+
+              {/* {data.data.skills !== "" ? (
                 <li>
                   Skills:
                   {data.data.skills.map((e, i) => {
@@ -161,7 +167,7 @@ const checkUrl = () => {
                     );
                   })}
                 </li>
-              ) : null}
+              ) : null} */}
               <li>Education : {profileData.education}</li>
             </ul>
 
