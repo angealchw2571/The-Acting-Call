@@ -2,8 +2,12 @@ import React from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 function CreateNewUser() {
+  let navigate = useNavigate();
+
+
   const notify = () => toast.error("Your password do not match!", {
     position: "top-center",
     autoClose: 5000,
@@ -14,7 +18,7 @@ function CreateNewUser() {
     progress: undefined,
     });
 
-  const handleLogin = async (loginDetails) => {
+  const handleRegister = async (loginDetails) => {
     await axios.post(`/api/account/register/`, loginDetails).then((res) => {
       console.log("res.data", res.data);
     });
@@ -33,9 +37,9 @@ function CreateNewUser() {
     const password2 = event.target.password2.value;
     const username = event.target.username.value;
     checkPassword(password1, password2)
-    ?  handleLogin({ email: email, password: password1, username: username })
+    ?  handleRegister({ email: email, password: password1, username: username })
     : console.log("fail");
-    // handleLogin({ email: email, password: password, username: username });
+      navigate("/login")
   };
 
   return (

@@ -12,9 +12,11 @@ SwiperCore.use([Pagination, Navigation]);
 function ActorCarousel(props) {
   const actorData = props.props;
   const navigate = useNavigate();
+  console.log("actorData", actorData)
 
-  const handleClick = (e) => {
-    navigate(`/profile/`);
+  const handleClick = (e, username) => {
+    console.log("handleClick", username)
+    navigate(`/profile/${username}`);
 
   };
 
@@ -31,7 +33,7 @@ function ActorCarousel(props) {
       >
         {actorData.map((e, i) => {
           return (
-            <SwiperSlide key={i} className=" group text-center" onClick={() => handleClick(e)}
+            <SwiperSlide key={i} className=" group text-center" onClick={() => handleClick(e, e.username)}
             >
               <div className="imgDiv group-hover:opacity-20 mx-2">
                 <img className="" src={e.displayPicture} style={{maxHeight:350, maxWidth:250}} alt={e.name} />

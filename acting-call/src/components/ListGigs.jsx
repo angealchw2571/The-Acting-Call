@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import GigsCarousel from "./GigsCarousel";
 import { Link } from "react-router-dom";
+import LoadingBar from "./LoadingBar"
+
 
 
 function ListGigs() {
@@ -43,7 +45,7 @@ function ListGigs() {
         </div>
         <div className="thirdDiv text-white">
         <div className="text-white">
-            {networkStatus === "resolved" ? ( <GigsCarousel gigsData={gigsData} className="" />): (<h1>loading</h1>)}
+            {networkStatus === "resolved" ? ( <GigsCarousel gigsData={gigsData} className="" />): (<LoadingBar />)}
         </div>
         </div>
       </div>
