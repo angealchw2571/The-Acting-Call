@@ -2,34 +2,60 @@ import React from 'react'
 import axios from "axios";
 import { userSessionAtom } from "./Login";
 import { useAtom } from "jotai";
+import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 
 
-function CreateNewProfile() {
+
+
+function EditProfile() {
     const sessionData = useAtom(userSessionAtom)[0];
     console.log("sessionData", sessionData);
+    const [profileData, setProfileData] = useState([]);
+    const [networkStatus, setNetworkStatus] = useState("pending");
+    console.log("profileData" , profileData)
 
     const notify = () =>
-    toast.success("Success! Please relogin to see your changes!", {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+      toast.success("Success!!",
+       {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+
 
     const axiosConfig = {
         headers: {
            Authorization: "Bearer " + sessionData.token.access
         }
      }
+
+     useEffect(() => {
+        const getData = async () => {
+          try {
+            const response = await axios.get(`/api/profiles/${sessionData.username}/`, axiosConfig);
+            setNetworkStatus("loading");
+            setProfileData(response.data);
+            setNetworkStatus("resolved");
+          } catch (error) {
+            console.log("error", error);
+          }
+        };
+        getData();
+      }, []);
+
     const handleApi = async (newData) => {
-        await axios.post(`/api/profiles/`, newData, axiosConfig).then((res)=> {
-          console.log("res.data", res.data);
-          notify();
-        })
+        await axios.put(`/api/profiles/${sessionData.username}/`, newData, axiosConfig).then((res)=> {
+          console.log("res.data", res.data)
+          notify()
+        }).catch(function (error) {
+            console.log(error);
+            setNetworkStatus("error");
+          });
       };
 
     const handleSubmit = (event) => {
@@ -60,10 +86,11 @@ function CreateNewProfile() {
       };
 
 
+      
+
     return (
         <>
-        <ToastContainer
-        position="top-center"
+        <ToastContainer position="top-center"
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -73,7 +100,8 @@ function CreateNewProfile() {
         draggable
         pauseOnHover
       />
-        <div className="grid grid-cols-1  text-white justify-items-center">
+      
+      <div className="grid grid-cols-1  text-white justify-items-center">
       <form
         className="grid-cols-12 col-span-1 flex gap-4 text-white max-w-lg"
         onSubmit={handleSubmit}
@@ -88,6 +116,7 @@ function CreateNewProfile() {
                 name="name"
                 className="border-0 px-3 py-3 placeholder-white text-white bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
                 placeholder="Full Name"
+                defaultValue={profileData.name}
               />
             </div>
             <div className="relative w-full mb-3">
@@ -100,6 +129,8 @@ function CreateNewProfile() {
                 min="1"
                 className="border-0 px-3 py-3 placeholder-white text-white bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
                 placeholder="Height"
+                defaultValue={profileData.height}
+
               />
             </div>
             <div className="relative w-full mb-3">
@@ -112,6 +143,8 @@ function CreateNewProfile() {
                 min="1"
                 className="border-0 px-3 py-3 placeholder-white text-white bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
                 placeholder="Weight"
+                defaultValue={profileData.weight}
+
               />
             </div>
             <div className="relative w-full mb-3">
@@ -122,6 +155,8 @@ function CreateNewProfile() {
                 name="displayPicture"
                 className="border-0 px-3 py-3 placeholder-white text-white bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
                 placeholder="Display Picture (url)"
+                defaultValue={profileData.displayPicture}
+
               />
             </div>
             <div className="relative w-full mb-3">
@@ -131,6 +166,7 @@ function CreateNewProfile() {
               <select
                 name="language"
                 className="border-0 px-3 py-3 placeholder-white text-white bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
+                defaultValue={profileData.language}
               >
                 <option value="English">English</option>
                 <option value="Mandarin">Mandarin</option>
@@ -145,6 +181,7 @@ function CreateNewProfile() {
               <select
                 name="gender"
                 className="border-0 px-3 py-3 placeholder-white text-white bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
+                defaultValue={profileData.gender}
               >
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
@@ -158,6 +195,8 @@ function CreateNewProfile() {
                 name="contact"
                 className="border-0 px-3 py-3 placeholder-white text-white bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
                 placeholder="Contact Email"
+                defaultValue={profileData.contact}
+
               />
             </div>
             <div className="relative w-full mb-3">
@@ -168,6 +207,8 @@ function CreateNewProfile() {
                 name="personalStatement"
                 className="border-0 px-3 py-3 placeholder-white text-white bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
                 placeholder="Personal Statement"
+                defaultValue={profileData.personalStatement}
+
               />
             </div>
 
@@ -177,7 +218,7 @@ function CreateNewProfile() {
                 type="submit"
                 style={{ transition: "all .15s ease" }}
               >
-                Create new profile
+                Update your profile
               </button>
             </div>
           </div>
@@ -192,6 +233,8 @@ function CreateNewProfile() {
                 name="hairColor"
                 className="border-0 px-3 py-3 placeholder-white text-white bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
                 placeholder="Hair Color"
+                defaultValue={profileData.hairColor}
+
               />
             </div>
             <div className="relative w-full mb-3">
@@ -202,6 +245,8 @@ function CreateNewProfile() {
                 name="eyeColor"
                 className="border-0 px-3 py-3 placeholder-white text-white bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
                 placeholder="Eye Color"
+                defaultValue={profileData.eyeColor}
+
               />
             </div>
             <div className="relative w-full mb-3">
@@ -212,6 +257,7 @@ function CreateNewProfile() {
                 name="accents"
                 className="border-0 px-3 py-3 placeholder-white text-white bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
                 placeholder="Accents"
+                defaultValue={profileData.accents}
               />
             </div>
             <div className="relative w-full mb-3">
@@ -222,6 +268,8 @@ function CreateNewProfile() {
                 name="skills"
                 className="border-0 px-3 py-3 placeholder-white text-white bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
                 placeholder="Skills"
+                defaultValue={profileData.skills}
+
               />
             </div>
             <div className="relative w-full mb-3">
@@ -234,6 +282,8 @@ function CreateNewProfile() {
                 min="1"
                 className="border-0 px-3 py-3 placeholder-white text-white bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
                 placeholder="Playing Age Minimum"
+                defaultValue={profileData.playAgeMin}
+
               />
             </div>
             <div className="relative w-full mb-3">
@@ -246,6 +296,7 @@ function CreateNewProfile() {
                 max="120"
                 className="border-0 px-3 py-3 placeholder-white text-white bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
                 placeholder="Playing Age Maximum"
+                defaultValue={profileData.playAgeMax}
               />
             </div>
           </div>
@@ -258,6 +309,7 @@ function CreateNewProfile() {
               name="links"
               className="border-0 px-3 py-3 placeholder-white text-gray-100 bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
               placeholder="Showreel Link"
+              defaultValue={profileData.links}
             />
           </div>
         </div>
@@ -270,6 +322,8 @@ function CreateNewProfile() {
               name="education"
               className="border-0 px-3 py-3 placeholder-white text-gray-100 bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
               placeholder="Education"
+              defaultValue={profileData.education}
+
             />
           </div>
         </div>
@@ -280,4 +334,4 @@ function CreateNewProfile() {
     )
 }
 
-export default CreateNewProfile
+export default EditProfile

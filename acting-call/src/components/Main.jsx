@@ -3,6 +3,7 @@ import Carousel from "react-elastic-carousel";
 import Item from "./Item";
 import { userSessionAtom } from "./Login";
 import { useAtom } from "jotai";
+import LoadingBar from "./LoadingBar"
 
 
 function Main() {

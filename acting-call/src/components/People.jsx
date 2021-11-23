@@ -2,6 +2,8 @@ import React from 'react'
 import ActorCarousel from "./ActorCarousel"
 import axios from "axios";
 import { useEffect, useState } from "react";
+import LoadingBar from "./LoadingBar"
+
 
 
 
@@ -29,10 +31,10 @@ function People() {
     return (
         <>
         <div className="text-white text-center font-montserrat">
-            <div className="text-4xl mb-6">
+        {networkStatus === "resolved" ? (<div className="text-4xl mb-6">
                 <span>Singapore Actors</span>
-            </div>
-            {networkStatus === "resolved" ? (<ActorCarousel props={actorsData} />) : (<h1>loading</h1>) }
+            </div>) : null }
+            {networkStatus === "resolved" ? (<ActorCarousel props={actorsData} />) : (<LoadingBar />) }
         </div>
         </>
     )

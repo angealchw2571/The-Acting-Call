@@ -4,14 +4,19 @@ import { userSessionAtom } from "./Login";
 import { useAtom } from "jotai";
 
 function CreateNewGigs() {
+  const sessionData = useAtom(userSessionAtom)[0];
+  console.log("sessionData from atom", sessionData);
+
+  const axiosConfig = {
+    headers: {
+       Authorization: "Bearer " + sessionData.token.access
+    }
+ }
   const handleApi = async (newData) => {
-    await axios.post(`/api/casts/`, newData).then((res)=> {
+    await axios.post(`/api/casts/`, newData, axiosConfig).then((res)=> {
       console.log("res.data", res.data)
     })
   };
-
-  const sessionData = useAtom(userSessionAtom)[0];
-  console.log("sessionData from atom", sessionData);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -24,11 +29,13 @@ function CreateNewGigs() {
       details: event.target.details.value,
       contact: event.target.contact.value,
       location: event.target.location.value,
-      postedBy: event.target.posted_by.value,
       company: event.target.company.value,
       remnueration: event.target.remnueration.value,
       loadingScale: event.target.loading_scale.value,
       contract: event.target.contract.value === "true" ? true : false,
+      username: sessionData.username,
+      email: sessionData.email,
+      postedBy: sessionData.id,
     };
     console.log("formData", formData);
     handleApi(formData)
@@ -137,17 +144,6 @@ function CreateNewGigs() {
         </div>
         <div className="secondDiv col-span-4">
           <div className="flex flex-wrap max-w-md">
-            <div className="relative w-full mb-3">
-              <label className="block uppercase text-white text-xs font-bold mb-2">
-                Posted by
-              </label>
-              <input
-                name="posted_by"
-                className="border-0 px-3 py-3 placeholder-white text-white bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
-                placeholder="Posted By"
-                value={sessionData.profiles}
-              />
-            </div>
             <div className="relative w-full mb-3">
               <label className="block uppercase text-white text-xs font-bold mb-2">
                 Company
