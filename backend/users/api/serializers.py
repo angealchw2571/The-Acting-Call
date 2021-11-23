@@ -20,7 +20,7 @@ class TokenSerializer(serializers.Serializer):
 
 class UserSerializer(serializers.ModelSerializer):
 
-    profiles = serializers.StringRelatedField(read_only=True)
+    profiles = serializers.PrimaryKeyRelatedField(read_only=True)
 
     class Meta:
         model = User

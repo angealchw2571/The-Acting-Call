@@ -7,12 +7,13 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Profiles(models.Model):
     name = models.CharField(max_length=50)
+    gender = models.CharField(max_length=20)
     height = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(250)], default=0)
     weight = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(1000)], default=0)
     displayPicture = models.CharField(max_length=300)
     language = models.CharField(max_length=300)
     contact = models.CharField(max_length=20)
-    personalStatement = models.CharField(max_length=500)
+    personalStatement = models.CharField(max_length=1000)
     hairColor = models.CharField(max_length=20)
     eyeColor = models.CharField(max_length=20)
     accents = models.CharField(max_length=100)
@@ -27,3 +28,6 @@ class Profiles(models.Model):
 
     def __str__(self):
         return self.name
+
+
+

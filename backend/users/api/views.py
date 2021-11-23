@@ -76,8 +76,7 @@ class LogoutViewAV(APIView):
         return Response({'Logged Out Successfully'},status=status.HTTP_200_OK)
             
 
-        # except:
-        #     return Response(status=status.HTTP_400_BAD_REQUEST)       
+              
 
 
 class RegistrationViewAV(APIView):
