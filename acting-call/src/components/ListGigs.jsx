@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import GigsCarousel from "./GigsCarousel";
+import { Link } from "react-router-dom";
 
 
 function ListGigs() {
@@ -31,19 +32,18 @@ function ListGigs() {
         <div className="firstDiv">
           <div className="mt-6">
             <div className="text-center">
-              <a href="/gigs/new" className="text-black bg-gray-200">
-                <button>Create new gig</button>
-              </a>
+              <Link to="/gigs/new" className="bg-gold-light text-gray-800 active:bg-gray-700 text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full">
+                <button className="uppercase font-bold">Create new gig</button>
+              </Link>
             </div>
           </div>
         </div>
-        <div className="secondDiv text-white">
-            <h1>networkStatus: {networkStatus}</h1>
+        <div className="secondDiv text-white my-6">
+
         </div>
         <div className="thirdDiv text-white">
         <div className="text-white">
-            {networkStatus === "resolved" ? ( <GigsCarousel gigsData={gigsData} className="" />): null}
-            {/* <GigsCarousel className="" /> */}
+            {networkStatus === "resolved" ? ( <GigsCarousel gigsData={gigsData} className="" />): (<h1>loading</h1>)}
         </div>
         </div>
       </div>

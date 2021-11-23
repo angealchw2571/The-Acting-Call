@@ -1,45 +1,66 @@
 import React from "react";
 import axios from "axios";
-import {RiGoogleFill} from 'react-icons/ri';
+import { RiGoogleFill } from "react-icons/ri";
 import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { atom, useAtom } from "jotai";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
-
+export const userSessionAtom = atom([]);
 
 export default function Login() {
-  // let navigate = useNavigate();
+  const [session, setSession] = useAtom(userSessionAtom);
   const [networkStatus, setNetworkStatus] = useState("pending");
-  console.log(networkStatus)
+  let navigate = useNavigate();
+  console.log("sessionData (login)", session, networkStatus);
 
+  const notify = () =>
+    toast.error("Please check your login details again!", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
 
   const handleLogin = async (loginDetails) => {
     await axios
       .post(`/api/account/login/`, loginDetails)
       .then((res) => {
+        setSession(res.data);
         setNetworkStatus("resolved");
-        // navigate("/");
+        if (res.data) navigate("/");
       })
       .catch(function (error) {
         console.log(error);
         setNetworkStatus("error");
+        notify();
       });
   };
 
-
-
-const handleSubmit = (event) => {
-  event.preventDefault()
-  const username = event.target.username.value
-  const password = event.target.password.value
-  console.log("username", username, "password", password)
-  handleLogin({username: username, password: password  });
-  // navigate("/"); //! redirect to homepage
-
-}
-
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const username = event.target.username.value;
+    const password = event.target.password.value;
+    handleLogin({ username: username, password: password });
+    // navigate("/"); //! redirect to homepage
+  };
 
   return (
     <>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <main>
         <section className="absolute w-full h-full">
           <div className="absolute top-0 w-full h-full bg-base"></div>
@@ -57,9 +78,10 @@ const handleSubmit = (event) => {
                       <button
                         className="bg-gold-light active:bg-gray-100 text-gray-800 px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs"
                         type="button"
-                        style={{ transition: "all .15s ease" }} >
-                          <RiGoogleFill className="mr-2" />
-                           Google
+                        style={{ transition: "all .15s ease" }}
+                      >
+                        <RiGoogleFill className="mr-2" />
+                        Google
                       </button>
                     </div>
                     <hr className=" border-b-1 border-gray-400" />
@@ -122,16 +144,13 @@ const handleSubmit = (event) => {
                           Sign In
                         </button>
                       </div>
-                <div className="mt-6">
-                  <div className="text-center">
-                    <a
-                      href="/user/new"
-                      className="text-gray-300"
-                    >
-                      <small>Create new account</small>
-                    </a>
-                  </div>
-                </div>
+                      <div className="mt-6">
+                        <div className="text-center">
+                          <a href="/user/new" className="text-gray-300">
+                            <small>Create new account</small>
+                          </a>
+                        </div>
+                      </div>
                     </form>
                   </div>
                 </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useNavigate } from "react-router-dom";
 
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
@@ -8,15 +9,20 @@ import SwiperCore, { Pagination, Navigation } from "swiper";
 
 SwiperCore.use([Pagination, Navigation]);
 
-function GigsCarousel(props) {
+function ActorCarousel(props) {
   const actorData = props.props;
-  // console.log("actorData", actorData);
+  const navigate = useNavigate();
+
+  const handleClick = (e) => {
+    navigate(`/profile/`);
+
+  };
 
   return (
     <>
       <Swiper
         slidesPerView={5}
-        spaceBetween={0}
+        spaceBetween={2}
         pagination={{
           clickable: true,
         }}
@@ -25,8 +31,9 @@ function GigsCarousel(props) {
       >
         {actorData.map((e, i) => {
           return (
-            <SwiperSlide key={i} className=" group text-center">
-              <div className="imgDiv group-hover:opacity-20">
+            <SwiperSlide key={i} className=" group text-center" onClick={() => handleClick(e)}
+            >
+              <div className="imgDiv group-hover:opacity-20 mx-2">
                 <img className="" src={e.displayPicture} style={{maxHeight:350, maxWidth:250}} alt={e.name} />
               </div> 
               <div className="nameDiv text-xl opacity-0 absolute bottom-1/2 right-1/2 group-hover:opacity-100">
@@ -42,4 +49,4 @@ function GigsCarousel(props) {
   );
 }
 
-export default GigsCarousel;
+export default ActorCarousel;
