@@ -4,6 +4,7 @@ import { RiGoogleFill } from "react-icons/ri";
 import { useState } from "react";
 import { atom, useAtom } from "jotai";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 export const userSessionAtom = atom([]);
 
@@ -11,7 +12,18 @@ export default function Login() {
   const [session, setSession] = useAtom(userSessionAtom);
   const [networkStatus, setNetworkStatus] = useState("pending");
   let navigate = useNavigate();
-  console.log("sessionData (login)", session, networkStatus)
+  console.log("sessionData (login)", session, networkStatus);
+
+  const notify = () =>
+    toast.error("Please check your login details again!", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
 
   const handleLogin = async (loginDetails) => {
     await axios
@@ -24,6 +36,7 @@ export default function Login() {
       .catch(function (error) {
         console.log(error);
         setNetworkStatus("error");
+        notify();
       });
   };
 
@@ -31,13 +44,23 @@ export default function Login() {
     event.preventDefault();
     const username = event.target.username.value;
     const password = event.target.password.value;
-    // console.log("username", username, "password", password)
     handleLogin({ username: username, password: password });
     // navigate("/"); //! redirect to homepage
   };
 
   return (
     <>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <main>
         <section className="absolute w-full h-full">
           <div className="absolute top-0 w-full h-full bg-base"></div>

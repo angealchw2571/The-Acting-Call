@@ -14,6 +14,7 @@ import Error from "./components/Error"
 import { userSessionAtom } from "./components/Login";
 import { useAtom } from "jotai";
 import { Navigate } from "react-router-dom";
+import CreateNewProfile from './components/CreateNewProfile';
 
 
 
@@ -42,6 +43,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/user/new" element={<CreateNewUser />} />
         <Route path="/profile" element={<PrivateRoute><Profile /> </PrivateRoute>} />
+        <Route path="/profile/new" element={<PrivateRoute><CreateNewProfile /> </PrivateRoute>} />
         <Route path="/gigs/new" element={<CreateCastCall />} />
         <Route path="/gigs" element={<PrivateRoute>
           <ListGigs />
