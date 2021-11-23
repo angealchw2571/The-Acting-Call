@@ -21,6 +21,8 @@ class Profiles(models.Model):
     playAgeMax = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(200)], default=35)
     links = models.CharField(max_length=500)
     education = models.CharField(max_length=500)
+    username = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100)
     accountLinked = models.OneToOneField(User, on_delete=models.CASCADE, null=True,related_name="profiles")
 
     def __str__(self):

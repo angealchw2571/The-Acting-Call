@@ -9,7 +9,7 @@ class ReviewUserOrReadOnly(permissions.BasePermission):
             return True
         else:
             # Check permisson for write request
-            print("object id is: ", obj.accountLinked_id)
-            print("object id TYPE is: ", type(obj.accountLinked_id))
-            print("USER id TYPE is: ", type(request.user.id))
-            return obj.accountLinked_id == request.user.id
+            # only if logged in user has the same username as this instance, 
+            # which means this instance belongs to the user, then he/she can edit
+            # or delete this profile.
+            return obj.username == request.user.username

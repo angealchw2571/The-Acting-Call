@@ -42,18 +42,8 @@ class LoginViewAV(APIView):
                 
                 accountserializer = UserSerializer(accountdetail)
                 
-                
-                # accountdetail = User.objects.filter(username=username)
-                # print("account detail is: ", accountdetail)
-
-                
-                # accountserializer = UserSerializer(data=accountdetail)
-                # accountserializer.is_valid()
-                # print(accountserializer.data)
-                
-
+                # using DRF JWT utility functions to generate a token 
                 refresh = RefreshToken.for_user(user)   
-                # using DRF JWT utility functions to generate a token          
                 tokenserializer = TokenSerializer(data=
                     {
                         'token': {
