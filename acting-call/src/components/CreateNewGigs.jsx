@@ -2,10 +2,23 @@ import React from "react";
 import axios from "axios";
 import { userSessionAtom } from "./Login";
 import { useAtom } from "jotai";
+import { ToastContainer, toast } from "react-toastify";
+
 
 function CreateNewGigs() {
   const sessionData = useAtom(userSessionAtom)[0];
   console.log("sessionData from atom", sessionData);
+
+  const notify = () =>
+    toast.success("Success!", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
 
   const axiosConfig = {
     headers: {
@@ -15,6 +28,7 @@ function CreateNewGigs() {
   const handleApi = async (newData) => {
     await axios.post(`/api/casts/`, newData, axiosConfig).then((res)=> {
       console.log("res.data", res.data)
+      notify();
     })
   };
 
@@ -35,13 +49,25 @@ function CreateNewGigs() {
       contract: event.target.contract.value === "true" ? true : false,
       username: sessionData.username,
       email: sessionData.email,
-      postedBy: sessionData.id,
+      postedBy: sessionData.profiles,
     };
     console.log("formData", formData);
     handleApi(formData)
   };
 
   return (
+    <>
+    <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     <div className="grid grid-cols-1  text-white justify-items-center">
       <form
         className="grid-cols-12 col-span-1 flex gap-4 text-white max-w-lg"
@@ -61,6 +87,7 @@ function CreateNewGigs() {
                 <option value="government">Government</option>
                 <option value="theatre">Theatre</option>
                 <option value="modelling">Modelling</option>
+                <option value="voiceover">Voiceover</option>
               </select>
             </div>
             <div className="relative w-full mb-3">
@@ -74,6 +101,7 @@ function CreateNewGigs() {
                 <option value="tv">TV</option>
                 <option value="radio">Radio</option>
                 <option value="print">Print/Magazine/Poster</option>
+                <option value="stage">Stage</option>
               </select>
             </div>
             <div className="relative w-full mb-3">
@@ -206,6 +234,7 @@ function CreateNewGigs() {
         </div>
       </form>
     </div>
+    </>
   );
 }
 

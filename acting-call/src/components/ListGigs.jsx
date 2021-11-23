@@ -31,6 +31,7 @@ function ListGigs() {
   return (
     <>
       <div className="text-center">
+      {networkStatus === "resolved" ? ( <div>
         <div className="firstDiv">
           <div className="mt-6">
             <div className="text-center">
@@ -40,14 +41,13 @@ function ListGigs() {
             </div>
           </div>
         </div>
-        <div className="secondDiv text-white my-6">
-
-        </div>
-        <div className="thirdDiv text-white">
+        <div className="secondDiv text-white">
         <div className="text-white">
-            {networkStatus === "resolved" ? ( <GigsCarousel gigsData={gigsData} className="" />): (<LoadingBar />)}
+          <GigsCarousel gigsData={gigsData} className="" />
         </div>
         </div>
+      </div>): (<LoadingBar />)}
+      
       </div>
     </>
   );

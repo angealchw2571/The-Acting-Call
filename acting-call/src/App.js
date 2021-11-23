@@ -44,7 +44,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/user/new" element={<CreateNewUser />} />
         <Route path="/profile" element={<PrivateRoute><Profile /> </PrivateRoute>} />
-        <Route path="/profile/:username" element={<Profile action={"view"}/>} />
+        <Route path="/profile/:username" element={<PrivateRoute><Profile action={"view"}/></PrivateRoute>} />
         <Route path="/profile/new" element={<PrivateRoute><CreateNewProfile/></PrivateRoute>} />
         <Route path="/profile/:id/edit" element={<PrivateRoute><EditProfile/></PrivateRoute>} />
         <Route path="/gigs/new" element={<CreateCastCall />} />
