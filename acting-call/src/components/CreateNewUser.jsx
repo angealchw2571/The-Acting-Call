@@ -7,7 +7,11 @@ import { useNavigate, Link } from "react-router-dom";
 
 function CreateNewUser() {
   let navigate = useNavigate();
-
+  const axiosConfig = {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    }
+ }
 
   const notifySuccess = () => toast.success("Success!", {
     position: "top-center",
@@ -41,7 +45,7 @@ function CreateNewUser() {
 
   const handleRegister = async (loginDetails) => {
     console.log("logindetails", loginDetails)
-    await axios.post(`https://castingcallbackend.herokuapp.com/api/account/register/`, loginDetails).then((res) => {
+    await axios.post(`https://castingcallbackend.herokuapp.com/api/account/register/`, loginDetails, axiosConfig).then((res) => {
       console.log("res.data", res.data);
       notifySuccess();
       navigate("/login")
