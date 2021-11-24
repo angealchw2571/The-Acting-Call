@@ -41,7 +41,7 @@ function CreateNewUser() {
 
   const handleRegister = async (loginDetails) => {
     console.log("logindetails", loginDetails)
-    await axios.post(`/api/account/register/`, loginDetails).then((res) => {
+    await axios.post(`https://castingcallbackend.herokuapp.com/api/account/register/`, loginDetails).then((res) => {
       console.log("res.data", res.data);
       notifySuccess();
       navigate("/login")
