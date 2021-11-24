@@ -29,6 +29,7 @@
     "test": "craco test",
     "eject": "react-scripts eject"
   },
+  "proxy": "https://castingcallbackend.herokuapp.com/",
   "eslintConfig": {
     "extends": [
       "react-app",
