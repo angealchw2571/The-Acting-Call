@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'casts',
     'profiles',
+    'forums',
     'rest_framework.authtoken',
     'django_seed',
     'rest_framework_simplejwt.token_blacklist',
