@@ -40,6 +40,7 @@ function CreateNewUser() {
     });
 
   const handleRegister = async (loginDetails) => {
+    console.log("logindetails", loginDetails)
     await axios.post(`/api/account/register/`, loginDetails).then((res) => {
       console.log("res.data", res.data);
       notifySuccess();
