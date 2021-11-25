@@ -44,6 +44,7 @@ export default function Login() {
       .post(`/api/account/login/`, loginDetails, axiosConfig)
       .then((res) => {
         setSession(res.data);
+        notifyLoading()
         setNetworkStatus("resolved");
         if (res.data) navigate("/");
       })
@@ -58,7 +59,6 @@ export default function Login() {
     event.preventDefault();
     const username = event.target.username.value;
     const password = event.target.password.value;
-    notifyLoading()
     handleLogin({ username: username, password: password });
   };
 
