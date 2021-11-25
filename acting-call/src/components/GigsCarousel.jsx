@@ -21,11 +21,11 @@ function GigsCarousel(props) {
   };
 
   const icon = (e) => {
-    if (e.type === "voiceover") return "https://cdn-icons.flaticon.com/png/512/2775/premium/2775352.png?token=exp=1637810009~hmac=9628c77b355ff92ad42f66023b24b0ba"
-    else if (e.type  === "theatre") return "https://cdn-icons-png.flaticon.com/512/91/91024.png"
-    else if (e.type === "government") return "https://cdn-icons.flaticon.com/png/512/3886/premium/3886301.png?token=exp=1637809932~hmac=9fd146969d8dd034c0dd00796a338d36"
-    else if (e.type === "modelling") return "https://cdn-icons-png.flaticon.com/512/633/633594.png"
-    else if (e.type === "commercial") return "https://cdn-icons.flaticon.com/png/512/2072/premium/2072452.png?token=exp=1637809888~hmac=bdb114085b58704eb407352db8ca7eb6"
+    if (e.type === "voiceover") return "./pics/microphone.png"
+    else if (e.type  === "theatre") return "./pics/mask.png"
+    else if (e.type === "government") return "./pics/government.png"
+    else if (e.type === "modelling") return "./pics/camera.png"
+    else if (e.type === "commercial") return "./pics/loudspeaker.png"
   } 
 
   return (
