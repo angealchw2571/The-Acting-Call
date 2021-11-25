@@ -5,18 +5,18 @@ import { useState } from "react";
 import { atom, useAtom } from "jotai";
 import { useNavigate, Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-
+require("dotenv").config();
 
 export const userSessionAtom = atom([]);
 
 export default function Login() {
+  const URI = process.env.REACT_APP_URI
   const [session, setSession] = useAtom(userSessionAtom);
   const [networkStatus, setNetworkStatus] = useState("pending");
   let navigate = useNavigate();
-  // console.log("sessionData (login)", session, networkStatus);
 
   const axiosConfig = {
-    baseURL: "https://actingcallbackend.herokuapp.com/"
+    baseURL: URI,
   }
   const notifyLoading = () =>
     toast.success("Success!", {

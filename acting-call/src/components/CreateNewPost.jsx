@@ -1,10 +1,12 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import { userSessionAtom } from "./Login";
-import { useAtom } from "jotai";
 import axios from "axios";
+import { useAtom } from "jotai";
+import { userSessionAtom } from "./Login";
+import { useParams } from "react-router-dom";
+require("dotenv").config();
 
 function CreateNewPost() {
+  const URI = process.env.REACT_APP_URI
   const { id } = useParams();
   const sessionData = useAtom(userSessionAtom)[0];
 
@@ -12,7 +14,7 @@ function CreateNewPost() {
     headers: {
       Authorization: "Bearer " + sessionData.token.access,
     },
-    baseURL: "https://actingcallbackend.herokuapp.com/",
+    baseURL: URI,
   };
   const handlePost = async (formData) => {
     await axios
@@ -29,7 +31,6 @@ function CreateNewPost() {
       commentUser: sessionData.username,
       post: id,
     };
-    console.log("formData", formData);
     handlePost(formData);
   };
 
@@ -74,7 +75,6 @@ function CreateNewPost() {
                   style={{ transition: "all .15s ease" }}
                 />
               </div>
-
               <div className="text-center mt-6">
                 <button
                   className="bg-gold-light text-gray-800 active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"

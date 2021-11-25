@@ -4,16 +4,16 @@ import axios from "axios";
 import ForumThreads from "./ForumThreads";
 import LoadingBar from "./LoadingBar";
 import { Link } from "react-router-dom";
+require("dotenv").config();
 
 function Forums() {
   const [networkStatus, setnetworkStatus] = useState("pending");
   const [forumData, setForumData] = useState();
   const [clickedThread, setClickThread] = useState();
-  //   console.log("sessionData", sessionData);
-  //   console.log("networkStatus", networkStatus);
+  const URI = process.env.REACT_APP_URI
 
   const axiosConfig = {
-    baseURL: "https://actingcallbackend.herokuapp.com/",
+    baseURL: URI,
   };
   useEffect(() => {
     const getData = async () => {
@@ -39,28 +39,19 @@ function Forums() {
       {networkStatus === "resolved" ? (
         <>
           <div className="text-center text-white">
-            {/* <Link
-              to="/forums/posts/new"
-              className="bg-gold-light text-gray-800 active:bg-gray-700 text-sm px-3 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
-            >
-              <button className="uppercase font-bold">
-                Create New Post
-              </button>
-            </Link> */}
             <Link
               to="/forums/threads/new"
               className="bg-gold-light text-gray-800 active:bg-gray-700 text-sm px-3 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
             >
-              <button className="uppercase font-bold">
-                Create New Thread
-              </button>
+              <button className="uppercase font-bold">Create New Thread</button>
             </Link>
           </div>
           <div className="text-center text-white grid grid-cols-3 bg-base grid-rows-3 mt-4">
             <div className="col-span-1">
               {forumData.map((e, i) => {
                 return (
-                  <div key={i}
+                  <div
+                    key={i}
                     className="bg-base border-2 max-w-lg p-10 col-span-2 my-8"
                     onClick={() => handleClickForum(e)}
                   >

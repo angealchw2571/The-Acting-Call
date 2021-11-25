@@ -1,7 +1,5 @@
 import React from "react";
 import { format } from "date-fns";
-import { Link } from "react-router-dom";
-
 
 function ForumComments(props) {
   const forumData = props.forumData;
