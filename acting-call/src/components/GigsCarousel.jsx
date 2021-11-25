@@ -11,14 +11,11 @@ SwiperCore.use([Pagination, Navigation]);
 export const arrAtom = atom([]);
 
 function GigsCarousel(props) {
-  //   console.log("props.gigsData", props.gigsData);
   const navigate = useNavigate();
   const gigsData = props.gigsData;
   const [gigSelection, setGigSelection] = useAtom(arrAtom);
-  console.log("gigSelection", gigSelection);
 
   const handleClick = (e) => {
-    // console.log("what i clicked", e);
     setGigSelection(e);
     navigate(`/gigs/list/${e.id}`);
   };

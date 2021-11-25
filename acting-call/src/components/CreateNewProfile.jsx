@@ -4,10 +4,8 @@ import { userSessionAtom } from "./Login";
 import { useAtom } from "jotai";
 import { ToastContainer, toast } from "react-toastify";
 
-
 function CreateNewProfile() {
     const sessionData = useAtom(userSessionAtom)[0];
-    console.log("sessionData", sessionData);
 
     const notify = () =>
     toast.success("Success! Please relogin to see your changes!", {
@@ -29,7 +27,6 @@ function CreateNewProfile() {
      }
     const handleApi = async (newData) => {
         await axios.post(`/api/profiles/`, newData, axiosConfig).then((res)=> {
-          console.log("res.data", res.data);
           notify();
         })
       };
@@ -57,7 +54,6 @@ function CreateNewProfile() {
           email: sessionData.email,
           accountLinked: sessionData.id
         };
-        console.log("formData", formData);
         handleApi(formData)
       };
 

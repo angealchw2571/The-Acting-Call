@@ -5,11 +5,14 @@
 button.rec-dot {
   background-color: #ebd276;
 }
-
-
-
+a:hover,
+a:visited,
+a:link,
+a:active {
+  text-decoration: none;
+}
 .rec.rec-arrow {
-  background-color: "transparent"
+  background-color: "transparent";
 }
 
 .rec.rec-arrow-left:hover:enabled:active,
@@ -22,19 +25,10 @@ button.rec-dot {
 }
 
 .swiper-pagination {
-    transform: translate(0px, 15px) !important;
-
+  transform: translate(0px, 15px) !important;
 }
 
-a:hover, a:visited, a:link, a:active
-{
-    text-decoration: none;
-}
-
-
-
-.babelrc 
-  {
-    "presets": ["@babel/preset-react", "@babel/preset-env"],
-    "plugins": ["@emotion"]
+.babelrc {
+  "presets":["@babel/preset-react","@babel/preset-env"],"plugins": [ "@emotion"
+    ];
 }

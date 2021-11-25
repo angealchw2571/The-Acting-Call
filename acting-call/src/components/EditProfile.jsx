@@ -5,15 +5,11 @@ import { useAtom } from "jotai";
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 
-
-
-
 function EditProfile() {
     const sessionData = useAtom(userSessionAtom)[0];
     console.log("sessionData", sessionData);
     const [profileData, setProfileData] = useState([]);
     const [networkStatus, setNetworkStatus] = useState("pending");
-    console.log("profileData" , profileData)
 
     const notify = () =>
       toast.success("Success!!",
@@ -26,7 +22,6 @@ function EditProfile() {
         draggable: true,
         progress: undefined,
       });
-
 
     const axiosConfig = {
         headers: {
@@ -82,12 +77,8 @@ function EditProfile() {
           email: sessionData.email,
           accountLinked: sessionData.id
         };
-        console.log("formData", formData);
         handleApi(formData)
       };
-
-
-      
 
     return (
         <>
@@ -101,7 +92,6 @@ function EditProfile() {
         draggable
         pauseOnHover
       />
-      
       <div className="grid grid-cols-1  text-white justify-items-center">
       <form
         className="grid-cols-12 col-span-1 flex gap-4 text-white max-w-lg"

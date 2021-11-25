@@ -12,7 +12,7 @@ function ProfileElements(props) {
   const [profileData, setProfileData] = useState([]);
   const [networkStatus, setNetworkStatus] = useState("pending");
   console.log("profileData", profileData);
-  
+
   const axiosConfig = {
     headers: {
       Authorization: "Bearer " + sessionData.token.access,

@@ -29,7 +29,6 @@ function CreateNewPost() {
       commentUser: sessionData.username,
       post: id,
     };
-    console.log("formData", formData);
     handlePost(formData);
   };
 
@@ -74,7 +73,6 @@ function CreateNewPost() {
                   style={{ transition: "all .15s ease" }}
                 />
               </div>
-
               <div className="text-center mt-6">
                 <button
                   className="bg-gold-light text-gray-800 active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"

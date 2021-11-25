@@ -5,17 +5,11 @@ import { userSessionAtom } from "./Login";
 import { useAtom } from "jotai";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import { useState } from "react";
-
-
-
 
 export default function Navbar() {
   const [navbarOpen, setNavbarOpen] = React.useState(true);
   const [session, setSession] = useAtom(userSessionAtom);
   const sessionData = useAtom(userSessionAtom)[0];
-  console.log("atom", sessionData)
-  console.log("navbar", sessionData)
 
   const axiosConfig = {
     baseURL: "https://actingcallbackend.herokuapp.com/",
@@ -38,14 +32,13 @@ export default function Navbar() {
   
   const handleLogout = async(payload) => {
     await axios.post(`/api/account/logout/`,payload, axiosConfig).then((res)=> {
-      console.log("res.data", res.data);
+      // console.log("res.data", res.data);
       notifySuccess()
       setSession([])
     }).catch(function (error) {
       console.log(error);
     });
   }
-
 
   return (
     <>

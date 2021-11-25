@@ -4,7 +4,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate, Link } from "react-router-dom";
 
-
 function CreateNewUser() {
   let navigate = useNavigate();
   const axiosConfig = {

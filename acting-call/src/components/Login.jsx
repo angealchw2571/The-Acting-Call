@@ -13,7 +13,6 @@ export default function Login() {
   const [session, setSession] = useAtom(userSessionAtom);
   const [networkStatus, setNetworkStatus] = useState("pending");
   let navigate = useNavigate();
-  // console.log("sessionData (login)", session, networkStatus);
 
   const axiosConfig = {
     baseURL: "https://actingcallbackend.herokuapp.com/"

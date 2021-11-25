@@ -1,31 +1,27 @@
-import { BrowserRouter } from 'react-router-dom'
-import { Route, Routes } from "react-router"
-import Main from './components/Main';
-import Navbar from './components/NavBar';
-import Footer from './components/Footer';
-import Login from './components/Login';
-import Profile from './components/Profile';
-import CreateCastCall from './components/CreateNewGigs';
-import ListGigs from './components/ListGigs';
-import CreateNewUser from './components/CreateNewUser';
-import People from './components/People';
-import IndividualGigs from './components/IndividualGigs';
-import Error from "./components/Error"
-import { userSessionAtom } from "./components/Login";
 import { useAtom } from "jotai";
 import { Navigate } from "react-router-dom";
-import CreateNewProfile from './components/CreateNewProfile';
-import EditProfile from './components/EditProfile';
+import { BrowserRouter } from 'react-router-dom'
+import { Route, Routes } from "react-router"
+import { userSessionAtom } from "./components/Login";
+import Main from './components/Main';
+import Login from './components/Login';
+import Error from "./components/Error"
+import Navbar from './components/NavBar';
 import Forums from './components/Forums';
+import People from './components/People';
+import Footer from './components/Footer';
+import Profile from './components/Profile';
+import ListGigs from './components/ListGigs';
+import EditProfile from './components/EditProfile';
 import CreateNewPost from './components/CreateNewPost'
+import CreateNewUser from './components/CreateNewUser';
+import CreateCastCall from './components/CreateNewGigs';
+import IndividualGigs from './components/IndividualGigs';
 import CreateNewThread from './components/CreateNewThread'
-
-
+import CreateNewProfile from './components/CreateNewProfile';
 
 function App() {
-
   const sessionData = useAtom(userSessionAtom)[0];
-  // console.log("sessionData (app.js)", sessionData);
 
   const isAuthenticated = () => {
     if (sessionData.username === undefined) {
@@ -37,7 +33,6 @@ function App() {
     const auth = isAuthenticated();
     return auth ? children : <Navigate to="/error" />;
   }
-
 
   return (
     <BrowserRouter>

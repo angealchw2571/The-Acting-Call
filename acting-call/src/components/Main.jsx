@@ -1,20 +1,18 @@
 import React from "react";
 import Carousel from "react-elastic-carousel";
 import Item from "./Item";
-import { userSessionAtom } from "./Login";
-import { useAtom } from "jotai";
 import { useEffect, useState } from "react";
 import axios from "axios";
+require("dotenv").config();
 
 function Main() {
-  const sessionData = useAtom(userSessionAtom)[0];
   const [networkStatus, setnetworkStatus] = useState("pending");
   const [gigsData, setGigsData] = useState();
-  // console.log("gigsData", gigsData);
-  // console.log("sessionData", sessionData);
+  const URI = process.env.REACT_APP_URI
+  console.log(URI)
 
   const axiosConfig = {
-    baseURL: "https://actingcallbackend.herokuapp.com/",
+    baseURL: URI,
   };
   useEffect(() => {
     const getData = async () => {

@@ -5,12 +5,9 @@ import GigsCarousel from "./GigsCarousel";
 import { Link } from "react-router-dom";
 import LoadingBar from "./LoadingBar"
 
-
-
 function ListGigs() {
     const [networkStatus, setnetworkStatus] = useState("pending");
     const [gigsData, setGigsData] = useState();
-    // console.log("gigsData", gigsData)
 
     const axiosConfig = {
       baseURL: "https://actingcallbackend.herokuapp.com/"
@@ -20,7 +17,6 @@ function ListGigs() {
           try {
             const response = await axios.get(`/api/casts/`, axiosConfig);
             setnetworkStatus("loading");
-            // console.log("response.data", response.data)
             setGigsData(response.data);
             setnetworkStatus("resolved");
           } catch (error) {

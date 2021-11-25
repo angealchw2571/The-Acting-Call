@@ -52,7 +52,6 @@ function CreateNewGigs() {
       email: sessionData.email,
       postedBy: sessionData.profiles,
     };
-    console.log("formData", formData);
     handleApi(formData)
   };
 

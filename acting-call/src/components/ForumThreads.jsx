@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 function ForumThreads(props) {
   const navigate = useNavigate();
   const forumData = props.forumData;
-  console.log("forumData", forumData)
 
   const handleClick = () => {
     navigate(`/forums/posts/${forumData.id}/new`);
@@ -43,7 +42,6 @@ function ForumThreads(props) {
                     {forumData.description}
                   </div>
                 </div>
-
                 <div className="relative w-full mb-1">
                   <label className="block uppercase text-white text-xs font-bold mb-2 text-right">
                     Date posted:{" "}
