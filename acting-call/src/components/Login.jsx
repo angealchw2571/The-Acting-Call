@@ -13,13 +13,13 @@ export default function Login() {
   const [session, setSession] = useAtom(userSessionAtom);
   const [networkStatus, setNetworkStatus] = useState("pending");
   let navigate = useNavigate();
-  console.log("sessionData (login)", session, networkStatus);
+  // console.log("sessionData (login)", session, networkStatus);
 
   const axiosConfig = {
     baseURL: "https://actingcallbackend.herokuapp.com/"
   }
   const notifyLoading = () =>
-    toast.info("Loading! Please wait", {
+    toast.success("Success!", {
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
@@ -60,7 +60,6 @@ export default function Login() {
     const password = event.target.password.value;
     notifyLoading()
     handleLogin({ username: username, password: password });
-    // navigate("/"); //! redirect to homepage
   };
 
   return (

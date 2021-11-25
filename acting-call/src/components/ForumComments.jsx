@@ -1,5 +1,7 @@
 import React from "react";
 import { format } from "date-fns";
+import { Link } from "react-router-dom";
+
 
 function ForumComments(props) {
   const forumData = props.forumData;
@@ -10,14 +12,15 @@ function ForumComments(props) {
         <>
           <div>
             <div className="text-center mb-3">
-              <h6 className="text-white text-2xl font-bold">Comments</h6>
+              <h6 className="text-white text-2xl font-bold">Comments</h6> 
             </div>
             <div className="text-center mb-7">
               <hr className=" border-b-1 border-gray-400" />
             </div>
-            {forumData.comments.map((e) => {
+            
+            {forumData.comments.map((e, i) => {
               return (
-                <div className="threadPanel">
+                <div key={i} className="threadPanel">
                   <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
                     <div className="relative w-full mb-7 ">
                       <label className="block uppercase text-white text-sm font-bold mb-2 text-left">

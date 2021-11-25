@@ -10,7 +10,8 @@ function Main() {
   const sessionData = useAtom(userSessionAtom)[0];
   const [networkStatus, setnetworkStatus] = useState("pending");
   const [gigsData, setGigsData] = useState();
-  console.log("gigsData", gigsData);
+  // console.log("gigsData", gigsData);
+  // console.log("sessionData", sessionData);
 
   const axiosConfig = {
     baseURL: "https://actingcallbackend.herokuapp.com/",
