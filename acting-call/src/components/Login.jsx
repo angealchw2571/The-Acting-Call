@@ -15,6 +15,9 @@ export default function Login() {
   let navigate = useNavigate();
   console.log("sessionData (login)", session, networkStatus);
 
+  const axiosConfig = {
+    baseURL: "https://actingcallbackend.herokuapp.com/"
+ }
   const notify = () =>
     toast.error("Please check your login details again!", {
       position: "top-center",
@@ -28,7 +31,7 @@ export default function Login() {
 
   const handleLogin = async (loginDetails) => {
     await axios
-      .post(`/api/account/login/`, loginDetails)
+      .post(`/api/account/login/`, loginDetails, axiosConfig)
       .then((res) => {
         setSession(res.data);
         setNetworkStatus("resolved");

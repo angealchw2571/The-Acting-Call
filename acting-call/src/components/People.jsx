@@ -13,10 +13,14 @@ function People() {
     const [networkStatus, setnetworkStatus] = useState("pending");
     const [actorsData, setActorsData] = useState();
 
+    const axiosConfig = {
+      baseURL: "https://actingcallbackend.herokuapp.com/"
+   }
+
     useEffect(() => {
         const getData = async () => {
           try {
-            const response = await axios.get(`/api/profiles/`);
+            const response = await axios.get(`/api/profiles/`, axiosConfig);
             setnetworkStatus("loading");
             // console.log("response.data", response.data)
             setActorsData(response.data);

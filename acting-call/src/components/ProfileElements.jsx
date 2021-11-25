@@ -19,6 +19,7 @@ function ProfileElements(props) {
         headers: {
           Authorization: "Bearer " + sessionData.token.access,
         },
+        baseURL: "https://actingcallbackend.herokuapp.com/"
       };
       const checkUrl = () => {
         if (props.action === "view") {
@@ -68,21 +69,21 @@ function ProfileElements(props) {
                     {profileData.weight !== "" ? (
                       <li>Weight: {profileData.weight} kg</li>
                     ) : null}
-                    <li>Gender : {profileData.gender} </li>
-                    <li>Language : {profileData.language} </li>
+                    <li >Gender : {profileData.gender} </li>
+                    <li className="capitalize">Language : {profileData.language} </li>
                     <li>Contact: {profileData.contact}</li>
                     <li>
                       Playing Age: {profileData.playAgeMin} -{" "}
                       {profileData.playAgeMax}
                     </li>
                     {profileData.hair_color !== "" ? (
-                      <li>Hair Color: {profileData.hairColor}</li>
+                      <li className="capitalize">Hair Color: {profileData.hairColor}</li>
                     ) : null}
                     {profileData.eyeColor !== "" ? (
-                      <li>Eye Color: {profileData.eyeColor}</li>
+                      <li className="capitalize">Eye Color: {profileData.eyeColor}</li>
                     ) : null}
-                    <li>Accents: {profileData.accents}</li>
-                    <li>Skills: {profileData.skills}</li>
+                    <li>Accents: <span className="uppercase">{profileData.accents}</span></li>
+                    <li className="capitalize">Skills: {profileData.skills}</li>
                     {/* <li>
                   Language:
                   {data.data.language.map((e, i) => {
@@ -121,7 +122,7 @@ function ProfileElements(props) {
                   })}
                 </li>
               ) : null} */}
-                    <li>Education : {profileData.education}</li>
+                    <li className="capitalize">Education : {profileData.education}</li>
                   </ul>
 
                   <div className="mt-6 pb-16 lg:pb-0 w-4/5 lg:w-full mx-auto flex flex-wrap items-center justify-between">

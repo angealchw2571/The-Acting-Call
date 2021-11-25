@@ -22,8 +22,10 @@ function CreateNewProfile() {
 
     const axiosConfig = {
         headers: {
-           Authorization: "Bearer " + sessionData.token.access
-        }
+           Authorization: "Bearer " + sessionData.token.access,
+        },
+        baseURL: "https://actingcallbackend.herokuapp.com/"
+
      }
     const handleApi = async (newData) => {
         await axios.post(`/api/profiles/`, newData, axiosConfig).then((res)=> {
@@ -39,14 +41,14 @@ function CreateNewProfile() {
           height: event.target.height.value,
           weight: event.target.weight.value,
           displayPicture: event.target.displayPicture.value,
-          language: event.target.language.value,
+          language: [event.target.language.value],
           gender: event.target.gender.value,
           contact: event.target.contact.value,
           personalStatement: event.target.personalStatement.value,
           hairColor: event.target.hairColor.value,
           eyeColor: event.target.eyeColor.value,
-          accents: event.target.accents.value,
-          skills: event.target.skills.value,
+          accents: [event.target.accents.value],
+          skills: [event.target.skills.value],
           playAgeMin: event.target.playAgeMin.value,
           playAgeMax: event.target.playAgeMax.value,
           links: event.target.links.value,

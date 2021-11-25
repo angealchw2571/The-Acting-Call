@@ -12,10 +12,13 @@ function ListGigs() {
     const [gigsData, setGigsData] = useState();
     // console.log("gigsData", gigsData)
 
+    const axiosConfig = {
+      baseURL: "https://actingcallbackend.herokuapp.com/"
+   }
     useEffect(() => {
         const getData = async () => {
           try {
-            const response = await axios.get(`/api/casts/`);
+            const response = await axios.get(`/api/casts/`, axiosConfig);
             setnetworkStatus("loading");
             // console.log("response.data", response.data)
             setGigsData(response.data);

@@ -22,8 +22,9 @@ function CreateNewGigs() {
 
   const axiosConfig = {
     headers: {
-       Authorization: "Bearer " + sessionData.token.access
-    }
+       Authorization: "Bearer " + sessionData.token.access,
+      },
+      baseURL: "https://actingcallbackend.herokuapp.com/"
  }
   const handleApi = async (newData) => {
     await axios.post(`/api/casts/`, newData, axiosConfig).then((res)=> {
@@ -98,7 +99,7 @@ function CreateNewGigs() {
                 name="platform"
                 className="border-0 px-3 py-3 placeholder-white text-white bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
               >
-                <option value="tv">TV</option>
+                <option value="TV">TV</option>
                 <option value="radio">Radio</option>
                 <option value="print">Print/Magazine/Poster</option>
                 <option value="stage">Stage</option>
