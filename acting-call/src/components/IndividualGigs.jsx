@@ -19,7 +19,7 @@ function IndividualGigs() {
                 Casting Information
             </h2>
             <p className="text-sm text-gray-300">
-                Posted by  <span classNameName="capitalize">{invidualGig.company}</span>
+                Posted by  <span className="capitalize">{invidualGig.company}</span>
             </p>
         </div>
         <div>

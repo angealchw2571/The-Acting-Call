@@ -17,6 +17,8 @@ import { Navigate } from "react-router-dom";
 import CreateNewProfile from './components/CreateNewProfile';
 import EditProfile from './components/EditProfile';
 import Forums from './components/Forums';
+import CreateNewPost from './components/CreateNewPost'
+import CreateNewThread from './components/CreateNewThread'
 
 
 
@@ -48,7 +50,9 @@ function App() {
         <Route path="/profile/:username" element={<PrivateRoute><Profile action={"view"} /></PrivateRoute>} />
         <Route path="/profile/new" element={<PrivateRoute><CreateNewProfile /></PrivateRoute>} />
         <Route path="/profile/:id/edit" element={<PrivateRoute><EditProfile /></PrivateRoute>} />
-        <Route path="/gigs/new" element={<CreateCastCall />} />
+        <Route path="/gigs/new" element={<PrivateRoute><CreateCastCall /></PrivateRoute>} />
+        <Route path="/forums/posts/:id/new" element={<PrivateRoute><CreateNewPost /></PrivateRoute>} />
+        <Route path="//forums/threads/new" element={<PrivateRoute><CreateNewThread /></PrivateRoute>} />
         <Route path="/gigs" element={<ListGigs />} />
         <Route path="/people" element={<People />} />
         <Route path="/forums" element={<Forums />} />

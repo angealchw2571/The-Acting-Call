@@ -69,13 +69,13 @@ function CreateNewGigs() {
         draggable
         pauseOnHover
       />
-    <div className="grid grid-cols-1  text-white justify-items-center">
+    <div className="grid grid-cols-1  text-white justify-items-center mx-36">
       <form
-        className="grid-cols-12 col-span-1 flex gap-4 text-white max-w-lg"
+        className="grid-cols-12 col-span-1 flex gap-4 text-white w-full"
         onSubmit={handleSubmit}
       >
-        <div className="firstDiv col-span-4 ">
-          <div className="flex flex-wrap max-w-md">
+        <div className="firstDiv col-span-4 w-full">
+          <div className="">
             <div className="relative w-full mb-3">
               <label className="block uppercase text-white text-xs font-bold mb-2">
                 Casting Type
@@ -171,8 +171,8 @@ function CreateNewGigs() {
             </div>
           </div>
         </div>
-        <div className="secondDiv col-span-4">
-          <div className="flex flex-wrap max-w-md">
+        <div className="secondDiv col-span-4 w-full ">
+          <div className=" max-w-md">
             <div className="relative w-full mb-3">
               <label className="block uppercase text-white text-xs font-bold mb-2">
                 Company
@@ -219,15 +219,15 @@ function CreateNewGigs() {
             </div>
           </div>
         </div>
-        <div className="thirdDiv col-span-4">
-        <div className="flex flex-wrap max-w-md">
+        <div className="thirdDiv col-span-4 w-full">
+        <div className="">
           <div className="relative w-full mb-3">
             <label className="block uppercase text-white text-xs font-bold mb-2">
               Details
             </label>
             <input
               name="details"
-              className="border-0 px-3 py-3 placeholder-white text-gray-100 bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
+              className="border-0 px-6 py-36 placeholder-white text-gray-100 bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
               placeholder="Details"
             />
           </div>
