@@ -42,6 +42,15 @@ export default function Navbar({ fixed }) {
               </li>
               <li className="nav-item">
                 <Link
+                  to="/forums"
+                  className="px-6 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                >
+                  <i className="fab fa-facebook-square text-lg leading-lg text-white opacity-75"></i>
+                  <span className="ml-2">forums</span>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
                   to="/gigs"
                   className="px-6 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                 >

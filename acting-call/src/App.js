@@ -16,6 +16,7 @@ import { useAtom } from "jotai";
 import { Navigate } from "react-router-dom";
 import CreateNewProfile from './components/CreateNewProfile';
 import EditProfile from './components/EditProfile';
+import Forums from './components/Forums';
 
 
 
@@ -30,7 +31,7 @@ function App() {
     } else return true
   }
 
-  function PrivateRoute({ children  }) {
+  function PrivateRoute({ children }) {
     const auth = isAuthenticated();
     return auth ? children : <Navigate to="/error" />;
   }
@@ -44,14 +45,13 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/user/new" element={<CreateNewUser />} />
         <Route path="/profile" element={<PrivateRoute><Profile /> </PrivateRoute>} />
-        <Route path="/profile/:username" element={<PrivateRoute><Profile action={"view"}/></PrivateRoute>} />
-        <Route path="/profile/new" element={<PrivateRoute><CreateNewProfile/></PrivateRoute>} />
-        <Route path="/profile/:id/edit" element={<PrivateRoute><EditProfile/></PrivateRoute>} />
+        <Route path="/profile/:username" element={<PrivateRoute><Profile action={"view"} /></PrivateRoute>} />
+        <Route path="/profile/new" element={<PrivateRoute><CreateNewProfile /></PrivateRoute>} />
+        <Route path="/profile/:id/edit" element={<PrivateRoute><EditProfile /></PrivateRoute>} />
         <Route path="/gigs/new" element={<CreateCastCall />} />
-        <Route path="/gigs" element={<PrivateRoute>
-          <ListGigs />
-        </PrivateRoute>} />
+        <Route path="/gigs" element={<ListGigs />} />
         <Route path="/people" element={<People />} />
+        <Route path="/forums" element={<Forums />} />
         <Route path="/error" element={<Error />} />
         <Route path="/gigs/list/:id" element={<IndividualGigs />} />
       </Routes>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { userSessionAtom } from "./Login";
 import { useAtom } from "jotai";
 import { useState, useEffect } from "react";
@@ -6,50 +6,46 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import LoadingBar from "./LoadingBar";
 
-
-
 function ProfileElements(props) {
-    const { username } = useParams();
-    const sessionData = useAtom(userSessionAtom)[0];
-    const [profileData, setProfileData] = useState([]);
-    const [networkStatus, setNetworkStatus] = useState("pending");
-    console.log("networkStatus", networkStatus);
+  const { username } = useParams();
+  const sessionData = useAtom(userSessionAtom)[0];
+  const [profileData, setProfileData] = useState([]);
+  const [networkStatus, setNetworkStatus] = useState("pending");
+  console.log("profileData", profileData);
   
-    const axiosConfig = {
-        headers: {
-          Authorization: "Bearer " + sessionData.token.access,
-        },
-        baseURL: "https://actingcallbackend.herokuapp.com/"
-      };
-      const checkUrl = () => {
-        if (props.action === "view") {
-          return `/api/profiles/${username}`;
-        } else {
-          return `/api/profiles/${sessionData.username}`;
-        }
-      };
-    
-      useEffect(() => {
-        const getData = async () => {
-          try {
-            const response = await axios.get(checkUrl(), axiosConfig);
-            setNetworkStatus("loading");
-            setProfileData(response.data);
-            setNetworkStatus("resolved");
-          } catch (error) {
-            console.log("error", error);
-          }
-        };
-        getData();
-      }, []);
+  const axiosConfig = {
+    headers: {
+      Authorization: "Bearer " + sessionData.token.access,
+    },
+    baseURL: "https://actingcallbackend.herokuapp.com/",
+  };
+  const checkUrl = () => {
+    if (props.action === "view") {
+      return `/api/profiles/${username}`;
+    } else {
+      return `/api/profiles/${sessionData.username}`;
+    }
+  };
 
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await axios.get(checkUrl(), axiosConfig);
+        setNetworkStatus("loading");
+        setProfileData(response.data);
+        setNetworkStatus("resolved");
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+    getData();
+  }, []);
 
-
-    return (
-        <> 
-        {networkStatus === "resolved" ? (
+  return (
+    <>
+      {networkStatus === "resolved" ? (
         <div>
-            <div className="profileDiv">
+          <div className="profileDiv">
             <div className="grid grid-cols-6 gap-10 text-white justify-items-center font-montserrat">
               <div className="col-start-2 col-span-4 text-5xl mb-10">
                 {profileData.name}
@@ -69,20 +65,29 @@ function ProfileElements(props) {
                     {profileData.weight !== "" ? (
                       <li>Weight: {profileData.weight} kg</li>
                     ) : null}
-                    <li >Gender : {profileData.gender} </li>
-                    <li className="capitalize">Language : {profileData.language} </li>
+                    <li>Gender : {profileData.gender} </li>
+                    <li className="capitalize">
+                      Language : {profileData.language}{" "}
+                    </li>
                     <li>Contact: {profileData.contact}</li>
                     <li>
                       Playing Age: {profileData.playAgeMin} -{" "}
                       {profileData.playAgeMax}
                     </li>
                     {profileData.hair_color !== "" ? (
-                      <li className="capitalize">Hair Color: {profileData.hairColor}</li>
+                      <li className="capitalize">
+                        Hair Color: {profileData.hairColor}
+                      </li>
                     ) : null}
                     {profileData.eyeColor !== "" ? (
-                      <li className="capitalize">Eye Color: {profileData.eyeColor}</li>
+                      <li className="capitalize">
+                        Eye Color: {profileData.eyeColor}
+                      </li>
                     ) : null}
-                    <li>Accents: <span className="uppercase">{profileData.accents}</span></li>
+                    <li>
+                      Accents:{" "}
+                      <span className="uppercase">{profileData.accents}</span>
+                    </li>
                     <li className="capitalize">Skills: {profileData.skills}</li>
                     {/* <li>
                   Language:
@@ -122,7 +127,9 @@ function ProfileElements(props) {
                   })}
                 </li>
               ) : null} */}
-                    <li className="capitalize">Education : {profileData.education}</li>
+                    <li className="capitalize">
+                      Education : {profileData.education}
+                    </li>
                   </ul>
 
                   <div className="mt-6 pb-16 lg:pb-0 w-4/5 lg:w-full mx-auto flex flex-wrap items-center justify-between">
@@ -213,10 +220,12 @@ function ProfileElements(props) {
               </div>
             </div>
           </div>
-        </div>) : (<LoadingBar/>)}
-        </>
-        
-    )
+        </div>
+      ) : (
+        <LoadingBar />
+      )}
+    </>
+  );
 }
 
-export default ProfileElements
+export default ProfileElements;
