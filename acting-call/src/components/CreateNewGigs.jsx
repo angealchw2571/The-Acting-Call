@@ -46,7 +46,7 @@ function CreateNewGigs() {
       contact: event.target.contact.value,
       location: event.target.location.value,
       company: event.target.company.value,
-      remnueration: event.target.remnueration.value,
+      remnueration: parseInt(event.target.remnueration.value),
       loadingScale: event.target.loading_scale.value,
       contract: event.target.contract.value === "true" ? true : false,
       username: sessionData.username,
