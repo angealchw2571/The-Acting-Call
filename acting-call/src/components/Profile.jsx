@@ -1,6 +1,6 @@
 import React from "react";
-import { userSessionAtom } from "./Login";
 import { useAtom } from "jotai";
+import { userSessionAtom } from "./Login";
 import { Link, useParams } from "react-router-dom";
 import ProfileElements from "./ProfileElements";
 

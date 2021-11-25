@@ -1,23 +1,24 @@
 import React from "react";
-import { userSessionAtom } from "./Login";
-import { useAtom } from "jotai";
-import { useState, useEffect } from "react";
 import axios from "axios";
+import { useAtom } from "jotai";
 import { useParams } from "react-router-dom";
+import { userSessionAtom } from "./Login";
+import { useState, useEffect } from "react";
 import LoadingBar from "./LoadingBar";
+require("dotenv").config();
 
 function ProfileElements(props) {
   const { username } = useParams();
   const sessionData = useAtom(userSessionAtom)[0];
   const [profileData, setProfileData] = useState([]);
   const [networkStatus, setNetworkStatus] = useState("pending");
-  console.log("profileData", profileData);
+  const URI = process.env.REACT_APP_URI
 
   const axiosConfig = {
     headers: {
       Authorization: "Bearer " + sessionData.token.access,
     },
-    baseURL: "https://actingcallbackend.herokuapp.com/",
+    baseURL: URI,
   };
   const checkUrl = () => {
     if (props.action === "view") {

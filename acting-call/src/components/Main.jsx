@@ -1,15 +1,15 @@
 import React from "react";
-import Carousel from "react-elastic-carousel";
 import Item from "./Item";
-import { useEffect, useState } from "react";
 import axios from "axios";
+import LoadingBar from "./LoadingBar";
+import Carousel from "react-elastic-carousel";
+import { useEffect, useState } from "react";
 require("dotenv").config();
 
 function Main() {
   const [networkStatus, setnetworkStatus] = useState("pending");
   const [gigsData, setGigsData] = useState();
   const URI = process.env.REACT_APP_URI
-  console.log(URI)
 
   const axiosConfig = {
     baseURL: URI,
@@ -77,7 +77,7 @@ function Main() {
             </div>
           </div>
         </div>
-      ) : null}
+      ) : (<LoadingBar/>)}
     </>
   );
 }

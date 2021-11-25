@@ -1,15 +1,18 @@
 import React from "react";
-import { userSessionAtom } from "./Login";
-import { useAtom } from "jotai";
 import axios from "axios";
+import { useAtom } from "jotai";
+import { userSessionAtom } from "./Login";
+require("dotenv").config();
 
 function CreateNewThread() {
   const sessionData = useAtom(userSessionAtom)[0];
+  const URI = process.env.REACT_APP_URI
+
   const axiosConfig = {
     headers: {
       Authorization: "Bearer " + sessionData.token.access,
     },
-    baseURL: "https://actingcallbackend.herokuapp.com/",
+    baseURL: URI,
   };
 
   const handlePost = async (formData) => {

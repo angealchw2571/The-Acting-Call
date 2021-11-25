@@ -1,18 +1,20 @@
 import React from "react";
-import { GiBackup } from "react-icons/gi";
-import { Link } from "react-router-dom";
-import { userSessionAtom } from "./Login";
-import { useAtom } from "jotai";
 import axios from "axios";
+import { useAtom } from "jotai";
+import { Link } from "react-router-dom";
+import { GiBackup } from "react-icons/gi";
+import { userSessionAtom } from "./Login";
 import { ToastContainer, toast } from "react-toastify";
+require("dotenv").config();
 
 export default function Navbar() {
   const [navbarOpen, setNavbarOpen] = React.useState(true);
   const [session, setSession] = useAtom(userSessionAtom);
   const sessionData = useAtom(userSessionAtom)[0];
+  const URI = process.env.REACT_APP_URI
 
   const axiosConfig = {
-    baseURL: "https://actingcallbackend.herokuapp.com/",
+    baseURL: URI,
 
  }
  const payload = {

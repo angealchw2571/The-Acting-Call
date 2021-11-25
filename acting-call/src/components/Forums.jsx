@@ -4,14 +4,16 @@ import axios from "axios";
 import ForumThreads from "./ForumThreads";
 import LoadingBar from "./LoadingBar";
 import { Link } from "react-router-dom";
+require("dotenv").config();
 
 function Forums() {
   const [networkStatus, setnetworkStatus] = useState("pending");
   const [forumData, setForumData] = useState();
   const [clickedThread, setClickThread] = useState();
+  const URI = process.env.REACT_APP_URI
 
   const axiosConfig = {
-    baseURL: "https://actingcallbackend.herokuapp.com/",
+    baseURL: URI,
   };
   useEffect(() => {
     const getData = async () => {

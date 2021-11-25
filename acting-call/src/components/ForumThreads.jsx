@@ -1,7 +1,7 @@
 import React from "react";
 import { format } from "date-fns";
-import ForumComments from "./ForumComments";
 import { useNavigate } from "react-router-dom";
+import ForumComments from "./ForumComments";
 
 function ForumThreads(props) {
   const navigate = useNavigate();

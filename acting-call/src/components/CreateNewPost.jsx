@@ -1,10 +1,12 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import { userSessionAtom } from "./Login";
-import { useAtom } from "jotai";
 import axios from "axios";
+import { useAtom } from "jotai";
+import { userSessionAtom } from "./Login";
+import { useParams } from "react-router-dom";
+require("dotenv").config();
 
 function CreateNewPost() {
+  const URI = process.env.REACT_APP_URI
   const { id } = useParams();
   const sessionData = useAtom(userSessionAtom)[0];
 
@@ -12,7 +14,7 @@ function CreateNewPost() {
     headers: {
       Authorization: "Bearer " + sessionData.token.access,
     },
-    baseURL: "https://actingcallbackend.herokuapp.com/",
+    baseURL: URI,
   };
   const handlePost = async (formData) => {
     await axios

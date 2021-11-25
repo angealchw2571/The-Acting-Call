@@ -1,12 +1,12 @@
 import React from "react";
-import { arrAtom } from "./GigsCarousel";
 import { useAtom } from "jotai";
-import { ImCross } from "react-icons/im";
 import { TiTick } from "react-icons/ti";
+import { ImCross } from "react-icons/im";
+import { arrAtom } from "./GigsCarousel";
 
 function IndividualGigs() {
   const invidualGig = useAtom(arrAtom)[0];
-  console.log("invidualGig", invidualGig);
+
   return (
     <>
       <div className="min-h-full flex items-center justify-center px-4 font-montserrat">
@@ -39,7 +39,6 @@ function IndividualGigs() {
               <p className="text-gray-300">Company</p>
               <p className="capitalize">{invidualGig.company}</p>
             </div>
-
             <div className="md:grid md:grid-cols-2 hover:bg-gray-700 md:space-y-0 space-y-1 p-4 border-b">
               <p className="text-gray-300">Contact</p>
               <p className="capitalize">{invidualGig.contact}</p>

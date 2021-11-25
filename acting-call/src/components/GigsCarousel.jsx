@@ -1,10 +1,10 @@
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
+import "swiper/swiper-bundle.min.css";
 import { atom, useAtom } from "jotai";
-import SwiperCore, { Pagination, Navigation } from "swiper";
 import { useNavigate } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Pagination, Navigation } from "swiper";
 
 
 SwiperCore.use([Pagination, Navigation]);

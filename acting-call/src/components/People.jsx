@@ -1,15 +1,18 @@
 import React from "react";
-import ActorCarousel from "./ActorCarousel";
 import axios from "axios";
-import { useEffect, useState } from "react";
 import LoadingBar from "./LoadingBar";
+import ActorCarousel from "./ActorCarousel";
+import { useEffect, useState } from "react";
+require("dotenv").config();
 
 function People() {
+  const URI = process.env.REACT_APP_URI
   const [networkStatus, setnetworkStatus] = useState("pending");
   const [actorsData, setActorsData] = useState();
+  
 
   const axiosConfig = {
-    baseURL: "https://actingcallbackend.herokuapp.com/",
+    baseURL: URI,
   };
 
   useEffect(() => {
