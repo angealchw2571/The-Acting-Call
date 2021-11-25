@@ -17,7 +17,17 @@ export default function Login() {
 
   const axiosConfig = {
     baseURL: "https://actingcallbackend.herokuapp.com/"
- }
+  }
+  const notifyLoading = () =>
+    toast.info("Loading! Please wait", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   const notify = () =>
     toast.error("Please check your login details again!", {
       position: "top-center",
@@ -48,6 +58,7 @@ export default function Login() {
     event.preventDefault();
     const username = event.target.username.value;
     const password = event.target.password.value;
+    notifyLoading()
     handleLogin({ username: username, password: password });
     // navigate("/"); //! redirect to homepage
   };

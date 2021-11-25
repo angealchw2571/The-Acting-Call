@@ -24,11 +24,11 @@ function GigsCarousel(props) {
   };
 
   const icon = (e) => {
-    if (e.type === "voiceover") return "https://cdn-icons.flaticon.com/png/512/2512/premium/2512097.png?token=exp=1637678448~hmac=21c3948324ac51cd9386815bb69ca27e"
+    if (e.type === "voiceover") return "https://cdn-icons.flaticon.com/png/512/2775/premium/2775352.png?token=exp=1637810009~hmac=9628c77b355ff92ad42f66023b24b0ba"
     else if (e.type  === "theatre") return "https://cdn-icons-png.flaticon.com/512/91/91024.png"
-    else if (e.type === "government") return "https://cdn-icons.flaticon.com/png/512/1582/premium/1582292.png?token=exp=1637677456~hmac=8b818d8e8527d467d7b92a217123bedc"
-    else if (e.type === "modelling") return "https://cdn-icons.flaticon.com/png/512/3150/premium/3150502.png?token=exp=1637678382~hmac=e1e635b55c76ccf3c7dcfaf7f693c18e"
-    else if (e.type === "commercial") return "https://cdn-icons.flaticon.com/png/512/2537/premium/2537940.png?token=exp=1637677760~hmac=034eeb6d72b81233c2d8cf9bcf6fa596"
+    else if (e.type === "government") return "https://cdn-icons.flaticon.com/png/512/3886/premium/3886301.png?token=exp=1637809932~hmac=9fd146969d8dd034c0dd00796a338d36"
+    else if (e.type === "modelling") return "https://cdn-icons-png.flaticon.com/512/633/633594.png"
+    else if (e.type === "commercial") return "https://cdn-icons.flaticon.com/png/512/2072/premium/2072452.png?token=exp=1637809888~hmac=bdb114085b58704eb407352db8ca7eb6"
   } 
 
   return (
