@@ -21,5 +21,6 @@ urlpatterns = [
     path('api/casts/', include('casts.api.urls')),
     path('api/profiles/', include('profiles.api.urls')),
     path('api/account/', include('users.api.urls')),
-    path('api-auth', include('rest_framework.urls'))
+    path('api/forums/', include('forums.api.urls')),
+    
 ]

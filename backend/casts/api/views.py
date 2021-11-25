@@ -2,26 +2,35 @@
 # rest_frameworks
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import serializers, status
+from rest_framework import status
 #-----------------------------------------------------
 # local files import - Serializers
 from casts.api.serializers import CastCallSerializer
 #-----------------------------------------------------
 # local files import - Models
 from casts.models import Castcall
+from profiles.models import Profiles
+#-----------------------------------------------------
+# local files import - Permissions
+from casts.api.permissions import ReviewCastOrReadOnly
+from casts.api.permissionsCreate import CreateCastOrReadOnly
 
 
 
 
 class CastCallAV(APIView):
 
+    permission_classes = [CreateCastOrReadOnly]
+
     def get(self, request):
-        print("user.id HERE: ", request.user.id)
+        
         castcall = Castcall.objects.all()
         serializer = CastCallSerializer(castcall, many=True)
         return Response(serializer.data)
 
     def post(self,request):
+        profiles = Profiles.objects.all()
+        self.check_object_permissions(request, profiles)
         serializer = CastCallSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -34,7 +43,10 @@ class CastCallAV(APIView):
 
 class CastCallDetailAV(APIView):
 
+    permission_classes = [ReviewCastOrReadOnly]
+
     def get(self, request, pk):
+        
         try:
             castcall = Castcall.objects.get(pk=pk)
         except Castcall.DoesNotExist:
@@ -43,7 +55,9 @@ class CastCallDetailAV(APIView):
         return Response(serializer.data)
 
     def put(self,request,pk):
+        
         castcall = Castcall.objects.get(pk=pk)
+        self.check_object_permissions(request, castcall)
         serializer = CastCallSerializer(castcall, data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -53,6 +67,7 @@ class CastCallDetailAV(APIView):
     
     def delete(self,request,pk):
         castcall = Castcall.objects.get(pk=pk)
+        self.check_object_permissions(request, castcall)
         castcall.delete()
         # return in form of status code
         return Response(status=status.HTTP_204_NO_CONTENT)

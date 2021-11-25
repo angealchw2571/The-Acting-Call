@@ -1,12 +1,13 @@
-from rest_framework import serializers
+# rest_framework related imports
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from users.api.serializers import RegistrationSerializer, LoginSerializer, TokenSerializer, UserSerializer
-# from rest_framework.authtoken.models import Token
-# from users import models
 from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
 
+# dependent local files imports
+from users.api.serializers import RegistrationSerializer, LoginSerializer, TokenSerializer, UserSerializer
+
+# Django in-built user related imports
 from django.contrib.auth.models import User
 from django.contrib import auth
 # from django.contrib.auth import authenticate, login
@@ -29,19 +30,20 @@ class LoginViewAV(APIView):
                 # backend log in according to the user details
                 auth.login(request, user)
                 print("You logged in!")
+                print("This is user details: ", user)
+                print(type(user))
 
+                try:
                 # try to filter account details, from User model database
-                accountdetail = User.objects.get(username=username)
-                print("account detail is: ", accountdetail)
-
-                # details obtained in QuerySet, convert to python dict.
-                accountserializer = UserSerializer(data=accountdetail)
-                accountserializer.is_valid()
-                print(accountserializer.data)
+                    accountdetail = User.objects.get(username=username)
+                    
+                except:
+                    return Response({'No such user'}, status=status.HTTP_404_NOT_FOUND)
                 
-
+                accountserializer = UserSerializer(accountdetail)
+                
+                # using DRF JWT utility functions to generate a token 
                 refresh = RefreshToken.for_user(user)   
-                # using DRF JWT utility functions to generate a token          
                 tokenserializer = TokenSerializer(data=
                     {
                         'token': {
@@ -51,12 +53,12 @@ class LoginViewAV(APIView):
                         
                     })
                 tokenserializer.is_valid()
-                login_response = { **serializer.data, **tokenserializer.data}
+                login_response = { **accountserializer.data, **tokenserializer.data}
                 
                 return Response(login_response)  
 
             else: 
-                return Response({'Error', 'Not User found'}, status=status.HTTP_404_NOT_FOUND)     
+                return Response({'Error, incorrect username or password, or account does NOT exist'}, status=status.HTTP_404_NOT_FOUND)     
 
         else:
             return Response(serializer.errors)
@@ -65,15 +67,16 @@ class LoginViewAV(APIView):
 
 class LogoutViewAV(APIView):
     def post(self, request):
-        try:
-            current_token = request.data['token']
-            used_token = RefreshToken(current_token)
-            used_token.blacklist()
-            auth.logout(request)
-            return Response(status=status.HTTP_200_OK)
+        print(request.data)
+        current_token = request.data['refresh']
+        used_token = RefreshToken(current_token)
+        used_token.blacklist()
+        # remove the session. typically, stores users. 
+        auth.logout(request)
+        return Response({'Logged Out Successfully'},status=status.HTTP_200_OK)
+            
 
-        except:
-            return Response(status=status.HTTP_400_BAD_REQUEST)       
+              
 
 
 class RegistrationViewAV(APIView):
@@ -98,15 +101,8 @@ class RegistrationViewAV(APIView):
             data = serializer.errors
 
 
-        return Response(data)   
+        return Response(data, status=status.HTTP_201_CREATED)   
 
 
-#  # JWT related
-#             refresh = RefreshToken.for_user(account)
-
-#             data['token'] = {
-#                                 'refresh': str(refresh),
-#                                 'access': str(refresh.access_token),
-#                             }
 
 

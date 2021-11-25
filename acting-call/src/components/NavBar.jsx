@@ -1,7 +1,6 @@
 import React from "react";
-import { GiBackup } from 'react-icons/gi';
-
-
+import { GiBackup } from "react-icons/gi";
+import { Link } from "react-router-dom";
 
 export default function Navbar({ fixed }) {
   const [navbarOpen, setNavbarOpen] = React.useState(true);
@@ -10,12 +9,12 @@ export default function Navbar({ fixed }) {
       <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-black mb-3 border-b-2 font-montserrat">
         <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
-            <a
-              className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
-              href="/"
-            >
-               Acting Call <GiBackup />
-            </a>
+          <Link
+                  to="/"
+                  className="px-6 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                >
+              Acting Call<GiBackup />
+            </Link>
             <button
               className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
               type="button"
@@ -33,40 +32,41 @@ export default function Navbar({ fixed }) {
           >
             <ul className="flex flex-row lg:flex-row list-none lg:ml-auto ">
               <li className="nav-item">
-                <a
+                <Link
+                  to="/people"
                   className="px-6 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                  href="/people"
                 >
                   <i className="fab fa-facebook-square text-lg leading-lg text-white opacity-75"></i>
                   <span className="ml-2">people</span>
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a
+                <Link
+                  to="/gigs"
                   className="px-6 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                  href="/gigs"
                 >
                   <i className="fab fa-twitter text-lg leading-lg text-white opacity-75"></i>
                   <span className="ml-2">gigs</span>
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a
+                
+                  <Link
+                  to="/profile"
                   className="px-6 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                  href="/profile"
                 >
                   <i className="fab fa-twitter text-lg leading-lg text-white opacity-75"></i>
                   <span className="ml-2">profile</span>
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a
+              <Link
+                  to="/login"
                   className="px-6 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                  href="/login"
                 >
                   <i className="fab fa-pinterest text-lg leading-lg text-white opacity-75"></i>
                   <span className="ml-2">login / signup</span>
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

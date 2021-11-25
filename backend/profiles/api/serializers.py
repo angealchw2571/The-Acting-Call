@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from profiles.models import Profiles
 from casts.api.serializers import CastCallSerializer
-from casts.models import Castcall
+
 
 class ProfilesSerializer(serializers.ModelSerializer):
 
@@ -10,3 +10,4 @@ class ProfilesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profiles
         fields = "__all__"
+        

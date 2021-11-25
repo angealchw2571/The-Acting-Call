@@ -2,6 +2,9 @@ import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import GigsCarousel from "./GigsCarousel";
+import { Link } from "react-router-dom";
+import LoadingBar from "./LoadingBar"
+
 
 
 function ListGigs() {
@@ -9,10 +12,13 @@ function ListGigs() {
     const [gigsData, setGigsData] = useState();
     // console.log("gigsData", gigsData)
 
+    const axiosConfig = {
+      baseURL: "https://actingcallbackend.herokuapp.com/"
+   }
     useEffect(() => {
         const getData = async () => {
           try {
-            const response = await axios.get(`/api/casts/`);
+            const response = await axios.get(`/api/casts/`, axiosConfig);
             setnetworkStatus("loading");
             // console.log("response.data", response.data)
             setGigsData(response.data);
@@ -28,32 +34,23 @@ function ListGigs() {
   return (
     <>
       <div className="text-center">
+      {networkStatus === "resolved" ? ( <div>
         <div className="firstDiv">
           <div className="mt-6">
             <div className="text-center">
-              <a href="/gigs/new" className="text-black bg-gray-200">
-                <button>Create new gig</button>
-              </a>
+              <Link to="/gigs/new" className="bg-gold-light text-gray-800 active:bg-gray-700 text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full">
+                <button className="uppercase font-bold">Create new gig</button>
+              </Link>
             </div>
           </div>
         </div>
         <div className="secondDiv text-white">
-            <h1>networkStatus: {networkStatus}</h1>
-        </div>
-        <div className="thirdDiv text-white">
         <div className="text-white">
-            {/* <ul>
-            {networkStatus === "resolved" ? (gigsData.map((e,i)=> {
-                return (
-                <>
-                <li>{e.platform}</li>
-                </>
-                )
-            })): null}
-            </ul> */}
-            <GigsCarousel />
+          <GigsCarousel gigsData={gigsData} className="" />
         </div>
         </div>
+      </div>): (<LoadingBar />)}
+      
       </div>
     </>
   );

@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-# project4
-=======
+
 # The Acting Call
 
 ## Table of contents
@@ -64,10 +62,8 @@ Testing
 
 ## Contributors
 
----
-
 Current:
 
 - Calvin Sim
 - Angeal Cheong
->>>>>>> master
+
