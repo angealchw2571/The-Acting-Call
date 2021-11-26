@@ -2,11 +2,24 @@ import React from "react";
 import axios from "axios";
 import { useAtom } from "jotai";
 import { userSessionAtom } from "./Login";
+import { ToastContainer, toast } from "react-toastify";
+
 require("dotenv").config();
 
 function CreateNewThread() {
   const sessionData = useAtom(userSessionAtom)[0];
   const URI = process.env.REACT_APP_URI
+
+  const notifySuccess = () =>
+  toast.success("Success!", {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
 
   const axiosConfig = {
     headers: {
@@ -20,6 +33,7 @@ function CreateNewThread() {
       .post(`/api/forums/posts/`, formData, axiosConfig)
       .then((res) => {
         console.log("res.data", res.data);
+        notifySuccess()
       });
   };
 
@@ -35,6 +49,17 @@ function CreateNewThread() {
   };
   return (
     <>
+    <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className="w-full lg:w-7/12 px-4 mx-auto mt-20">
         <div className="relative flex flex-col min-w-0 break-words w-full mb-6 rounded-lg bg-base border-2">
           <div className="rounded-t mb-0 px-6 py-6">
