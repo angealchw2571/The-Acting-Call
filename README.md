@@ -34,11 +34,11 @@ The wireframe covers the following components:
 
 Project is created with:
 
-- PostgreSQL
-- Django
 - ReactJS
 - TailwindCSS
-- Node.js
+- Python
+- Django
+- PostgreSQL
 
 Library used in the project:
 
