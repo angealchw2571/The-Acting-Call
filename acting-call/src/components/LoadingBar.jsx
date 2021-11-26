@@ -1,9 +1,7 @@
-import { useState } from "react";
 import { css } from "@emotion/react";
 import {PulseLoader} from "react-spinners/";
 
-// Can be a string as well. Need to ensure each key-value pair ends with ;
-const override = css`
+const style = css`
   display: block;
   margin: 0 auto;
 `;
@@ -11,7 +9,7 @@ const override = css`
 function App() {
   return (
     <div className="sweet-loading text-center">
-      <PulseLoader color={"#ffffff"} loading={true} css={override} size={15} />
+      <PulseLoader color={"#ffffff"} loading={true} css={style} size={15} />
     </div>
   );
 }

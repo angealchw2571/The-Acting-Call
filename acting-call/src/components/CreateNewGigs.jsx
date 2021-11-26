@@ -1,12 +1,13 @@
 import React from "react";
 import axios from "axios";
-import { userSessionAtom } from "./Login";
 import { useAtom } from "jotai";
+import { userSessionAtom } from "./Login";
 import { ToastContainer, toast } from "react-toastify";
-
+require("dotenv").config();
 
 function CreateNewGigs() {
   const sessionData = useAtom(userSessionAtom)[0];
+  const URI = process.env.REACT_APP_URI
   console.log("sessionData from atom", sessionData);
 
   const notify = () =>
@@ -24,7 +25,7 @@ function CreateNewGigs() {
     headers: {
        Authorization: "Bearer " + sessionData.token.access,
       },
-      baseURL: "https://actingcallbackend.herokuapp.com/"
+      baseURL: URI,
  }
   const handleApi = async (newData) => {
     await axios.post(`/api/casts/`, newData, axiosConfig).then((res)=> {
@@ -40,19 +41,17 @@ function CreateNewGigs() {
       platform: event.target.platform.value,
       period: event.target.period.value,
       role: event.target.role.value,
-      gender: event.target.gender.value,
       details: event.target.details.value,
       contact: event.target.contact.value,
       location: event.target.location.value,
       company: event.target.company.value,
-      remnueration: event.target.remnueration.value,
+      remuneration: parseInt(event.target.remuneration.value),
       loadingScale: event.target.loading_scale.value,
       contract: event.target.contract.value === "true" ? true : false,
       username: sessionData.username,
       email: sessionData.email,
       postedBy: sessionData.profiles,
     };
-    console.log("formData", formData);
     handleApi(formData)
   };
 
@@ -69,13 +68,13 @@ function CreateNewGigs() {
         draggable
         pauseOnHover
       />
-    <div className="grid grid-cols-1  text-white justify-items-center">
+    <div className="grid grid-cols-1  text-white justify-items-center mx-36">
       <form
-        className="grid-cols-12 col-span-1 flex gap-4 text-white max-w-lg"
+        className="grid-cols-12 col-span-1 flex gap-4 text-white w-full"
         onSubmit={handleSubmit}
       >
-        <div className="firstDiv col-span-4 ">
-          <div className="flex flex-wrap max-w-md">
+        <div className="firstDiv col-span-4 w-full">
+          <div className="">
             <div className="relative w-full mb-3">
               <label className="block uppercase text-white text-xs font-bold mb-2">
                 Casting Type
@@ -129,18 +128,6 @@ function CreateNewGigs() {
             </div>
             <div className="relative w-full mb-3">
               <label className="block uppercase text-white text-xs font-bold mb-2">
-                Gender
-              </label>
-              <select
-                name="gender"
-                className="border-0 px-3 py-3 placeholder-white text-white bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
-              >
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </select>
-            </div>
-            <div className="relative w-full mb-3">
-              <label className="block uppercase text-white text-xs font-bold mb-2">
                 Contact
               </label>
               <input
@@ -149,16 +136,7 @@ function CreateNewGigs() {
                 placeholder="Contact"
               />
             </div>
-            <div className="relative w-full mb-3">
-              <label className="block uppercase text-white text-xs font-bold mb-2">
-                Location
-              </label>
-              <input
-                name="location"
-                className="border-0 px-3 py-3 placeholder-white text-white bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
-                placeholder="Location"
-              />
-            </div>
+            
 
             <div className="text-center mt-6">
               <button
@@ -171,8 +149,8 @@ function CreateNewGigs() {
             </div>
           </div>
         </div>
-        <div className="secondDiv col-span-4">
-          <div className="flex flex-wrap max-w-md">
+        <div className="secondDiv col-span-4 w-full ">
+          <div className=" max-w-md">
             <div className="relative w-full mb-3">
               <label className="block uppercase text-white text-xs font-bold mb-2">
                 Company
@@ -185,10 +163,10 @@ function CreateNewGigs() {
             </div>
             <div className="relative w-full mb-3">
               <label className="block uppercase text-white text-xs font-bold mb-2">
-                Remnueration (SGD)
+              Remuneration (SGD)
               </label>
               <input
-                name="remnueration"
+                name="remuneration"
                 className="border-0 px-3 py-3 placeholder-white text-white bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
                 placeholder="Remnueration"
               />
@@ -217,17 +195,27 @@ function CreateNewGigs() {
                 <option value="false">No</option>
               </select>
             </div>
+            <div className="relative w-full mb-3">
+              <label className="block uppercase text-white text-xs font-bold mb-2">
+                Location
+              </label>
+              <input
+                name="location"
+                className="border-0 px-3 py-3 placeholder-white text-white bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
+                placeholder="Location"
+              />
+            </div>
           </div>
         </div>
-        <div className="thirdDiv col-span-4">
-        <div className="flex flex-wrap max-w-md">
+        <div className="thirdDiv col-span-4 w-full">
+        <div className="">
           <div className="relative w-full mb-3">
             <label className="block uppercase text-white text-xs font-bold mb-2">
               Details
             </label>
             <input
               name="details"
-              className="border-0 px-3 py-3 placeholder-white text-gray-100 bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
+              className="border-0 px-6 py-36 placeholder-white text-gray-100 bg-gray-400 rounded text-sm shadow focus:outline-none focus:ring w-full"
               placeholder="Details"
             />
           </div>

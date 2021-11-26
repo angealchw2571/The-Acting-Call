@@ -14,12 +14,6 @@ from forums.api.serializers import PostsSerializer, DiscussionSerializer
 from forums.api.permissions import ReviewPostOrReadOnly, ReviewDiscussionOrReadOnly
 from forums.api.permissionsCreate import CreatePostOrReadOnly, CreateDiscussionOrReadOnly
 
-# datetime related
-import datetime
-now = datetime.datetime.now().replace(microsecond=0)
-nowmod = now.strftime("%Y-%m-%d %H:%M:%S")
-
-
 
 class PostsAV(APIView):
 
@@ -29,7 +23,7 @@ class PostsAV(APIView):
         print(request.user.id)
         posts = Posts.objects.all()
         serializer = PostsSerializer(posts, many=True)
-        print(nowmod)
+        
         
         return Response(serializer.data,status=status.HTTP_200_OK)
 

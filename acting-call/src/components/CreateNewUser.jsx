@@ -1,16 +1,17 @@
 import React from "react";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate, Link } from "react-router-dom";
-
+import { ToastContainer, toast } from "react-toastify";
+require("dotenv").config();
 
 function CreateNewUser() {
   let navigate = useNavigate();
+  const URI = process.env.REACT_APP_URI
+  
   const axiosConfig = {
-    baseURL: "https://actingcallbackend.herokuapp.com/"
+    baseURL: URI,
  }
-
   const notifySuccess = () => toast.success("Success!", {
     position: "top-center",
     autoClose: 5000,

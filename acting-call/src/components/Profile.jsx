@@ -1,14 +1,13 @@
 import React from "react";
-import { userSessionAtom } from "./Login";
 import { useAtom } from "jotai";
+import { userSessionAtom } from "./Login";
 import { Link, useParams } from "react-router-dom";
 import ProfileElements from "./ProfileElements";
 
 function Profile(props) {
-  const action = props.action
+  const action = props.action;
   const { username } = useParams();
   const sessionData = useAtom(userSessionAtom)[0];
-
 
   return (
     <>
@@ -32,9 +31,12 @@ function Profile(props) {
       )}
 
       {sessionData.profiles === null ? (
-        <h1 className="text-center text-white">It seems you do not have a profile. Please create one.</h1>
-      ) : (<ProfileElements props={username} action={action}/>)}
-      
+        <h1 className="text-center text-white">
+          It seems you do not have a profile. Please create one.
+        </h1>
+      ) : (
+        <ProfileElements props={username} action={action} />
+      )}
     </>
   );
 }

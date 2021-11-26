@@ -1,14 +1,14 @@
 import React from 'react'
 import axios from "axios";
-import { userSessionAtom } from "./Login";
 import { useAtom } from "jotai";
+import { userSessionAtom } from "./Login";
 import { ToastContainer, toast } from "react-toastify";
-
+require("dotenv").config();
 
 function CreateNewProfile() {
-    const sessionData = useAtom(userSessionAtom)[0];
-    console.log("sessionData", sessionData);
-
+  const sessionData = useAtom(userSessionAtom)[0];
+  const URI = process.env.REACT_APP_URI
+  
     const notify = () =>
     toast.success("Success! Please relogin to see your changes!", {
       position: "top-center",
@@ -24,12 +24,11 @@ function CreateNewProfile() {
         headers: {
            Authorization: "Bearer " + sessionData.token.access,
         },
-        baseURL: "https://actingcallbackend.herokuapp.com/"
+        baseURL: URI,
 
      }
     const handleApi = async (newData) => {
         await axios.post(`/api/profiles/`, newData, axiosConfig).then((res)=> {
-          console.log("res.data", res.data);
           notify();
         })
       };
@@ -57,7 +56,6 @@ function CreateNewProfile() {
           email: sessionData.email,
           accountLinked: sessionData.id
         };
-        console.log("formData", formData);
         handleApi(formData)
       };
 

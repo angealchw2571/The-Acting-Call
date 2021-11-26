@@ -5,21 +5,21 @@ import { useState } from "react";
 import { atom, useAtom } from "jotai";
 import { useNavigate, Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-
+require("dotenv").config();
 
 export const userSessionAtom = atom([]);
 
 export default function Login() {
+  const URI = process.env.REACT_APP_URI
   const [session, setSession] = useAtom(userSessionAtom);
   const [networkStatus, setNetworkStatus] = useState("pending");
   let navigate = useNavigate();
-  console.log("sessionData (login)", session, networkStatus);
 
   const axiosConfig = {
-    baseURL: "https://actingcallbackend.herokuapp.com/"
+    baseURL: URI,
   }
   const notifyLoading = () =>
-    toast.info("Loading! Please wait", {
+    toast.success("Success!", {
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
@@ -44,6 +44,7 @@ export default function Login() {
       .post(`/api/account/login/`, loginDetails, axiosConfig)
       .then((res) => {
         setSession(res.data);
+        notifyLoading()
         setNetworkStatus("resolved");
         if (res.data) navigate("/");
       })
@@ -58,9 +59,7 @@ export default function Login() {
     event.preventDefault();
     const username = event.target.username.value;
     const password = event.target.password.value;
-    notifyLoading()
     handleLogin({ username: username, password: password });
-    // navigate("/"); //! redirect to homepage
   };
 
   return (
@@ -82,7 +81,7 @@ export default function Login() {
           <div className="container mx-auto px-4 h-full">
             <div className="flex content-center items-center justify-center h-full">
               <div className="w-full lg:w-4/12 px-4">
-                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-base border-2">
+                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 rounded-lg bg-base border-2">
                   <div className="rounded-t mb-0 px-6 py-6">
                     <div className="text-center mb-3">
                       <h6 className="text-white text-sm font-bold">
