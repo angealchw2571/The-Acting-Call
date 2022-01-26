@@ -3,8 +3,8 @@
 
 Visit the site here: https://project4-tau.vercel.app/
 
-Example account 
-Username - chicken
+Example account <br>
+Username - chicken <br>
 Password - chicken
 
 ## Table of contents
