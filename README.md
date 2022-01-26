@@ -26,10 +26,12 @@ The goal of this project is to adapt and create a freelance gig listing website 
 - Create and post casting call listings
 - Create forum threads and reply to specific forum threads
 
+<p float="left">
 <img width="400" height="240" src="./images/homepage.png" >
 <img width="400" height="240" src="./images/profileExample.png" >
 <img width="400" height="300" src="./images/gigsListing.png" >
 <img width="400" height="300" src="./images/forumExample.png" >
+</p>
 
 ## Wireframe
 
