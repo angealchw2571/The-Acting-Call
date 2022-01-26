@@ -3,6 +3,10 @@
 
 Visit the site here: https://project4-tau.vercel.app/
 
+Example account 
+Username - chicken
+Password - chicken
+
 ## Table of contents
 
 - [Introduction](#introduction)
@@ -21,6 +25,11 @@ The goal of this project is to adapt and create a freelance gig listing website 
 - Browse through the directory for casting calls and actor/actress database
 - Create and post casting call listings
 - Create forum threads and reply to specific forum threads
+
+<img width="400" height="240" src="./images/homepage.png" >
+<img width="400" height="240" src="./images/profileExample.png" >
+<img width="400" height="300" src="./images/gigsListing.png" >
+<img width="400" height="300" src="./images/forumExample.png" >
 
 ## Wireframe
 
