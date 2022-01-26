@@ -3,7 +3,6 @@
 
 Visit the site here: https://project4-tau.vercel.app/
 
-Example account <br>
 Username - chicken <br>
 Password - chicken
 
